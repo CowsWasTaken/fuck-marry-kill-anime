@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'graphql-anime-smash-or-pass';
+  title = 'anime-smash-or-pass';
 
   client_id = 'CLIENT_ID'
 }

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "graphql-anime-smash-or-pass": {
+    "anime-smash-or-pass": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/graphql-anime-smash-or-pass",
+            "outputPath": "dist/anime-smash-or-pass",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "graphql-anime-smash-or-pass:build:production"
+              "browserTarget": "anime-smash-or-pass:build:production"
             },
             "development": {
-              "browserTarget": "graphql-anime-smash-or-pass:build:development"
+              "browserTarget": "anime-smash-or-pass:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "graphql-anime-smash-or-pass:build"
+            "browserTarget": "anime-smash-or-pass:build"
           }
         },
         "test": {
@@ -107,5 +107,5 @@
       }
     }
   },
-  "defaultProject": "graphql-anime-smash-or-pass"
+  "defaultProject": "anime-smash-or-pass"
 }

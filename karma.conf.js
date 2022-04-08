@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/graphql-anime-smash-or-pass'),
+      dir: require('path').join(__dirname, './coverage/anime-smash-or-pass'),
       subdir: '.',
       reporters: [
         { type: 'html' },

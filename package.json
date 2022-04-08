@@ -1,9 +1,10 @@
 {
-  "name": "graphql-anime-smash-or-pass",
+  "name": "anime-smash-or-pass",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "start": "ng serve",
+    "start:heroku": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
