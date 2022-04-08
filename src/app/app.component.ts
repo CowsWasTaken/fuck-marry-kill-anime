@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'graphql-anime-smash-or-pass';
+
+  client_id = 'CLIENT_ID'
 }
