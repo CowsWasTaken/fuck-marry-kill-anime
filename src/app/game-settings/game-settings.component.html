@@ -1,0 +1,86 @@
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)">
+    <mat-expansion-panel-header >
+      <mat-panel-title>
+        AniList Name
+      </mat-panel-title>
+      <mat-panel-description>
+<!--        TODO set name or anime here when filled   -->
+        Your username from AniList. Your list must be public to work
+        <mat-icon>account_circle</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="userNameInput">
+      <button *ngIf="userNameInput" matSuffix mat-icon-button aria-label="Clear" (click)="userNameInput=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-action-row>
+      <button mat-button color="primary" (click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Genres
+      </mat-panel-title>
+      <mat-panel-description>
+        Filter for Genres (leave empty to not filter)
+        <mat-icon>view_module</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <app-chips-genre></app-chips-genre>
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Release Year
+      </mat-panel-title>
+      <mat-panel-description>
+        Filter for Release Year
+        <mat-icon>date_range</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <app-year-selection></app-year-selection>
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Irgendwas
+      </mat-panel-title>
+      <mat-panel-description>
+        Schreib einfach was rein
+        <mat-icon>map</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Other Stuff</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">End</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+</mat-accordion>
