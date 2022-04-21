@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameSettingsComponent implements OnInit {
 
+  selectedIndex = [{type  : 'ANIME'},  {type: 'MANGA'}]
+
+  public currentIndex = 0;
+
   userNameInput = '';
 
   constructor() { }
@@ -26,6 +30,14 @@ export class GameSettingsComponent implements OnInit {
 
   prevStep() {
     this.step--;
+  }
+
+  isValid():boolean {
+    return this.userNameInput.length > 0
+  }
+
+  reset() {
+    this.userNameInput = ''
   }
 }
 
