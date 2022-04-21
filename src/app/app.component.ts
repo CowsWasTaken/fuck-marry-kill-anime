@@ -8,7 +8,7 @@ import { AniListHttpClientService } from './services/ani-list-http-client.servic
   styleUrls: ['./app.component.sass'],
 })
 export class AppComponent {
-  title = 'anime-smash-or-pass';
+  title = 'fuck-marry-kill-anime';
 
   constructor(private anilist: AniListHttpClientService) {}
   async ngOnInit() {}

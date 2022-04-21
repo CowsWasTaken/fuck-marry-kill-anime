@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "anime-smash-or-pass": {
+    "fuck-marry-kill-anime": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/anime-smash-or-pass",
+            "outputPath": "dist/fuck-marry-kill-anime",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "anime-smash-or-pass:build:production"
+              "browserTarget": "fuck-marry-kill-anime:build:production"
             },
             "development": {
-              "browserTarget": "anime-smash-or-pass:build:development"
+              "browserTarget": "fuck-marry-kill-anime:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "anime-smash-or-pass:build"
+            "browserTarget": "fuck-marry-kill-anime:build"
           }
         },
         "test": {
@@ -109,5 +109,5 @@
       }
     }
   },
-  "defaultProject": "anime-smash-or-pass"
+  "defaultProject": "fuck-marry-kill-anime"
 }

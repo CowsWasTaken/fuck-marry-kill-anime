@@ -1,8 +1,8 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-app.use(express.static(__dirname + "/dist/anime-smash-or-pass"));
+app.use(express.static(__dirname + "/dist/fuck-marry-kill-anime"));
 app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname + "/dist/anime-smash-or-pass/index.html"));
+  res.sendFile(path.join(__dirname + "/dist/fuck-marry-kill-anime/index.html"));
 });
 app.listen(process.env.PORT || 8080);
