@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'anime-smash-or-pass'`, () => {
+  it(`should have as title 'fuck-marry-kill-anime'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('anime-smash-or-pass');
+    expect(app.title).toEqual('fuck-marry-kill-anime');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('anime-smash-or-pass app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('fuck-marry-kill-anime app is running!');
   });
 });

@@ -1,0 +1,32 @@
+<div>
+
+<mat-button-toggle (click)="time_input='disabled'" [checked]="time_input==='disabled'" aria-label="disabled-label"
+                   class="mr-6" matTooltip="Disabled" [matTooltipShowDelay]="show_delay">
+  <mat-icon>close</mat-icon>
+</mat-button-toggle>
+<mat-button-toggle-group>
+  <mat-button-toggle (click)="time_input='before'" [checked]="time_input==='before'"
+                     aria-label="before-label" matTooltip="Before" [matTooltipShowDelay]="show_delay">
+    <mat-icon>first_page</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle (click)="time_input='equal'" [checked]="time_input==='equal'"
+                     aria-label="equal-label" matTooltip="Equal" [matTooltipShowDelay]="show_delay">
+    <mat-icon class="material-icons-outlined">view_agenda</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle (click)="time_input='after'" [checked]="time_input==='after'"
+                     aria-label="after-label" matTooltip="After" [matTooltipShowDelay]="show_delay">
+    <mat-icon>last_page</mat-icon>
+  </mat-button-toggle>
+
+</mat-button-toggle-group>
+
+<mat-slider class="w-3/5"
+            [disabled]="time_input==='disabled'"
+  aria-label="units"
+  max="2022"
+  min="1950"
+  step="1"
+            [(ngModel)]="year_input"
+  thumbLabel></mat-slider>
+
+</div>

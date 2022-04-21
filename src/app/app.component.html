@@ -1,1 +1,5 @@
-<a href='https://anilist.co/api/v2/oauth/authorize?client_id={{client_id}}&response_type=token'>Login with AniList</a>
+<app-login></app-login>
+<button mat-stroked-button color="accent" (click)="getUserAnime()">Do Something</button>
+<p>{{result | json}}</p>
+
+<app-game-settings></app-game-settings>
