@@ -7,13 +7,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from "@angular/material/button";
 import {AniListHttpClientService} from "./services/ani-list-http-client.service";
 import {HttpClientModule} from "@angular/common/http";
-import { GraphQLModule } from './graphql.module';
+import { GraphQLModule } from './graphql/graphql.module';
 import { LoginComponent } from './login/login.component';
+import {CharacterOptionComponent} from "./character-option/character-option.component";
+import {GameSettingsComponent} from "./game-settings/game-settings.component";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatIconModule} from "@angular/material/icon";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatInputModule} from "@angular/material/input";
+import {ChipsGenreComponent} from "./chips-genre/chips-genre.component";
+import {MatChipsModule} from "@angular/material/chips";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {YearSelectionComponent} from "./year-selection/year-selection.component";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatSliderModule} from "@angular/material/slider";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    LoginComponent
+    AppComponent,
+    LoginComponent,
+    CharacterOptionComponent,
+    GameSettingsComponent,
+    ChipsGenreComponent,
+    YearSelectionComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +40,18 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     MatButtonModule,
     HttpClientModule,
-    GraphQLModule
+    GraphQLModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatButtonToggleModule,
+    MatSliderModule,
+    MatTooltipModule,
   ],
   providers: [AniListHttpClientService],
   bootstrap: [AppComponent]
