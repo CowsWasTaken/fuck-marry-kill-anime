@@ -1,4 +1,5 @@
 <app-login></app-login>
-<button (click)="makeRequest()">Click Here</button>
+<button mat-stroked-button color="accent" (click)="getUserAnime()">Do Something</button>
+<p>{{result | json}}</p>
 
-<p>{{result}}</p>
+<app-game-settings></app-game-settings>

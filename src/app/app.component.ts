@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginComponent } from './login/login.component';
+import { MediaListCollection } from 'src/models/DTO/MediaListCollection';
 import { AniListHttpClientService } from './services/ani-list-http-client.service';
 
 @Component({
@@ -13,8 +13,11 @@ export class AppComponent {
   constructor(private anilist: AniListHttpClientService) {}
   async ngOnInit() {}
 
-  result: any;
-  async makeRequest() {
-    this.result = (await this.anilist.getMedia(1)).title.english;
+  result : MediaListCollection | null = null
+
+   getUserAnime() {
+     this.anilist.getUserAnime('applejackFanAcc').subscribe(res => {
+      this.result = res.data.MediaListCollection
+    })
   }
 }
