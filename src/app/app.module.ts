@@ -24,6 +24,11 @@ import {YearSelectionComponent} from "./year-selection/year-selection.component"
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { StatusSelectionComponent } from './status-selection/status-selection.component';
+import {MatListModule} from "@angular/material/list";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -32,7 +37,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     CharacterOptionComponent,
     GameSettingsComponent,
     ChipsGenreComponent,
-    YearSelectionComponent
+    YearSelectionComponent,
+    StatusSelectionComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +58,10 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MatButtonToggleModule,
     MatSliderModule,
     MatTooltipModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatTabsModule,
+    MatCardModule,
   ],
   providers: [AniListHttpClientService],
   bootstrap: [AppComponent]

@@ -4,7 +4,7 @@ import {MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {map, Observable, startWith} from "rxjs";
 import {FormControl} from "@angular/forms";
-import { Genres } from '../constants/Genres';
+import {Genres} from '../constants/Genres';
 
 @Component({
   selector: 'app-chips-genre',
@@ -32,10 +32,13 @@ export class ChipsGenreComponent implements OnInit {
   }
 
   add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
+    let value = (event.value || '').trim();
+    // checks if value is already in list or if input genre is a valid genre from the all genre list
+    value = this.isGenreValid(value)
 
-    // Add our fruit
-    if (value) {
+    // checks if value is already in list and not null
+    if (value && !this.genres.includes(value)) {
+      console.log(value)
       this.genres.push(value);
     }
 
@@ -55,7 +58,7 @@ export class ChipsGenreComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.genres.push(event.option.viewValue);
-    this.genreInput= '';
+    this.genreInput = '';
     this.genreCtrl.setValue(null);
   }
 
@@ -63,5 +66,14 @@ export class ChipsGenreComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.allGenres.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  }
+
+  private isGenreValid(input: string): string {
+    for (const item of this.allGenres) {
+      if (item.toLowerCase() === input.toLowerCase()) {
+        return item
+      }
+    }
+    return ''
   }
 }
