@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {SettingsFilter} from "../../models/Filter/SettingsFilter";
+import {YearFilter} from "../../models/Filter/YearFilter";
+import {Observable, Subject} from "rxjs";
 
 @Component({
   selector: 'app-game-settings',
@@ -12,6 +15,15 @@ export class GameSettingsComponent implements OnInit {
   public currentIndex = 0;
 
   userNameInput = '';
+
+  settingsFilter : SettingsFilter = {}
+
+  $reset = new Subject<void>()
+
+  onYearFilterChange($event: YearFilter) {
+    console.log($event)
+    this.settingsFilter.yearPreference = $event
+  }
 
   constructor() { }
 
@@ -37,6 +49,7 @@ export class GameSettingsComponent implements OnInit {
   }
 
   reset() {
+    this.$reset.next()
     this.userNameInput = ''
   }
 }

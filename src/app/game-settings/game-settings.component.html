@@ -63,7 +63,8 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <app-year-selection></app-year-selection>
+      <app-year-selection (yearEmitter)="onYearFilterChange($event)"
+                          [resetEvent]="$reset.asObservable()"></app-year-selection>
 
       <mat-action-row>
         <button (click)="prevStep()" color="warn" mat-button>Previous</button>
@@ -90,10 +91,12 @@
     </mat-expansion-panel>
 
   </mat-accordion>
-  <mat-card>
-    <div class="flex space-x-11 justify-end">
-      <button mat-stroked-button color="warn" (click)="reset()">Reset</button>
-      <button mat-stroked-button color="primary" [disabled]="isValid()">Start</button>
+  <mat-card class="mt-4">
+    <div class="flex space-x-11 justify-end" >
+
+      <button (click)="reset()" color="warn" mat-stroked-button>Reset</button>
+      <button [disabled]="!isValid()" color="primary" mat-stroked-button>Start</button>
+
     </div>
   </mat-card>
 

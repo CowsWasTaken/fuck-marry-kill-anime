@@ -38,6 +38,7 @@ export class ChipsGenreComponent implements OnInit {
 
     // checks if value is already in list and not null
     if (value && !this.genres.includes(value)) {
+      console.log(value)
       this.genres.push(value);
     }
 
