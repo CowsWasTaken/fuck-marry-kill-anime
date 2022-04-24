@@ -18,6 +18,7 @@ export class AppComponent {
    getUserAnime() {
      this.anilist.getUserAnime('applejackFanAcc').subscribe(res => {
       this.result = res.data.MediaListCollection
+       console.log(this.result)
     })
   }
 }
