@@ -1,4 +1,4 @@
 export enum PickOption {
-  fuck = 'fuck', marry = 'marry', kill = 'kill'
+  FUCK = 'Fuck', MARRY = 'Marry', KILL = 'Kill', UNCHECKED = 'Unchecked'
 
 }
