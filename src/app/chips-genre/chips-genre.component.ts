@@ -7,25 +7,20 @@ import {FormControl} from "@angular/forms";
 import {Genres} from '../constants/Genres';
 
 @Component({
-  selector: 'app-chips-genre',
-  templateUrl: './chips-genre.component.html',
-  styleUrls: ['./chips-genre.component.css']
+  selector: 'app-chips-genre', templateUrl: './chips-genre.component.html', styleUrls: ['./chips-genre.component.css']
 })
 export class ChipsGenreComponent implements OnInit {
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   genreCtrl = new FormControl();
   filteredGenres: Observable<string[]>;
-  genres: string[] = [];
+  genres: Set<string> = new Set([]);
   allGenres: string[] = Genres;
 
   genreInput: string = ''
 
   constructor() {
-    this.filteredGenres = this.genreCtrl.valueChanges.pipe(
-      startWith(null),
-      map((genre: string | null) => (genre ? this._filter(genre) : this.allGenres.slice())),
-    );
+    this.filteredGenres = this.genreCtrl.valueChanges.pipe(startWith(null), map((genre: string | null) => (genre ? this._filter(genre) : this.allGenres.slice())),);
   }
 
   ngOnInit(): void {
@@ -37,9 +32,8 @@ export class ChipsGenreComponent implements OnInit {
     value = this.isGenreValid(value)
 
     // checks if value is already in list and not null
-    if (value && !this.genres.includes(value)) {
-      console.log(value)
-      this.genres.push(value);
+    if (value && !this.genres.has(value)) {
+      this.genres.add(value);
     }
 
     // Clear the input value
@@ -49,15 +43,11 @@ export class ChipsGenreComponent implements OnInit {
   }
 
   remove(fruit: string): void {
-    const index = this.genres.indexOf(fruit);
-
-    if (index >= 0) {
-      this.genres.splice(index, 1);
-    }
+    this.genres.delete(fruit);
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.genres.push(event.option.viewValue);
+    this.genres.add(event.option.viewValue);
     this.genreInput = '';
     this.genreCtrl.setValue(null);
   }
