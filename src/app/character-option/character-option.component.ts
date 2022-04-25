@@ -1,5 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Character} from "../../models/DTO/Character";
+import {PickOption} from "../../models/PickOption";
+import {TakenPick} from "../../models/TakenPick";
 
 @Component({
   selector: 'app-character-option',
@@ -8,24 +10,44 @@ import {Character} from "../../models/DTO/Character";
 })
 export class CharacterOptionComponent implements OnInit {
 
-  @Input()
-  character: Character = {
-    "id": 45887,
-    "name": {
-      "full": "Sasha Blouse",
-      "userPreferred": "Sasha Blouse"
-    },
-    "image": {
-      "large": "https://s4.anilist.co/file/anilistcdn/character/large/b45887-QPtJH0KwqthW.jpg"
-    },
-    "siteUrl": "https://anilist.co/character/45887",
-    "favourites": 7482,
-    "gender": "Female"
+  @Input() character: Character
+  @Output('pick') pickEmitter = new EventEmitter<TakenPick>()
+  PickOption = PickOption
+  pick: PickOption | undefined
+
+  constructor() {
   }
 
-  constructor() { }
+  private _takenPicks: TakenPick[]
+
+  get takenPicks() {
+    return this._takenPicks
+  }
+
+  @Input() set takenPicks(takenPicks: TakenPick[]) {
+    this._takenPicks = takenPicks
+    this.resetIfPickIsTaken()
+  }
 
   ngOnInit(): void {
   }
 
+  emitChange() {
+    if (this.pick !== undefined) {
+      this.pickEmitter.emit({pick: this.pick, character: this.character})
+    }
+  }
+
+  resetIfPickIsTaken() {
+    // TODO not getting called idk why
+    console.log('here')
+    if (this.pick === undefined) {
+      return
+    }
+    for (const takenPicksKey of this.takenPicks) {
+      if (this.pick === takenPicksKey.pick && this.character !== takenPicksKey.character) {
+        this.pick = PickOption.UNCHECKED
+      }
+    }
+  }
 }

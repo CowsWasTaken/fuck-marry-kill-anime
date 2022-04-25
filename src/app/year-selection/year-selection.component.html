@@ -1,7 +1,7 @@
 <div class="flex">
   <div class="flex-auto">
     <mat-button-toggle (click)="filterType=YearFilterType.disabled;emitChange()"
-                       [checked]="filterType==='disabled'"
+                       [checked]="filterType===YearFilterType.disabled"
                        [matTooltipShowDelay]="tooltipDelay" aria-label="disabled-label" class="mr-6"
                        matTooltip="Disabled">
       <mat-icon>close</mat-icon>

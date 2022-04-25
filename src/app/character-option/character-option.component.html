@@ -1,1 +1,24 @@
-<img class="rounded-lg" [src]="character.image.large" [alt]="character.name.userPreferred">
+<div class="border-2 border-gray-300 rounded-md p-2 h-full">
+
+  <mat-tab-group dynamicHeight>
+    <mat-tab label="Image">
+      <div class="flex justify-center mt-6 mb-3">
+        <img [alt]="character.name.userPreferred" [src]="character.image.large" class="rounded-lg ">
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Description">
+      <div class="mt-6 px-2 pb-3">
+        <app-character-description-card [character]="character"></app-character-description-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <div class="flex justify-center">
+    <mat-button-toggle-group (click)="emitChange()" [(ngModel)]="pick">
+      <mat-button-toggle [value]="PickOption.FUCK" [checked]="pick === PickOption.FUCK">{{PickOption.FUCK}}</mat-button-toggle>
+      <mat-button-toggle [value]="PickOption.MARRY" [checked]="pick === PickOption.MARRY">{{PickOption.MARRY}}</mat-button-toggle>
+      <mat-button-toggle [value]="PickOption.KILL" [checked]="pick === PickOption.KILL">{{PickOption.KILL}}</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>

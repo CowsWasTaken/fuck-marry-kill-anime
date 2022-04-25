@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-title>{{character.name.userPreferred}}</mat-card-title>
+  <mat-card-subtitle>{{character.name.native }}, {{character.name.full}}</mat-card-subtitle>
+  <mat-card-content>
+    <p>Age: {{character.age || 'n/a'}}</p>
+    <p>Birthday: {{character.dateOfBirth | fuzzyDate }}</p>
+    <p>Gender: {{character.gender || 'n/a'}}</p>
+    <p>Favourites: {{character.favourites || 'n/a'}}</p>
+    <p>Blood Type: {{character.bloodType || 'n/a'}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <!--            TODO implement this favourite button-->
+    <button aria-label="Add to favourites" color="warn" mat-icon-button matTooltip="Login Required"
+            matTooltipShowDelay="100">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <a [href]="character.siteUrl" aria-label="Site Url" mat-icon-button matTooltip="Open Site"
+       matTooltipShowDelay="100"
+       target="_blank">
+      <mat-icon>open_in_new</mat-icon>
+    </a>
+
+  </mat-card-actions>
+</mat-card>

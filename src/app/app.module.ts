@@ -29,6 +29,8 @@ import {MatListModule} from "@angular/material/list";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatCardModule} from "@angular/material/card";
+import { FuzzyDatePipe } from './pipes/fuzzy-date.pipe';
+import { CharacterDescriptionCardComponent } from './character-description-card/character-description-card.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import {MatCardModule} from "@angular/material/card";
     GameSettingsComponent,
     ChipsGenreComponent,
     YearSelectionComponent,
-    StatusSelectionComponent
+    StatusSelectionComponent,
+    FuzzyDatePipe,
+    CharacterDescriptionCardComponent
   ],
   imports: [
     BrowserModule,

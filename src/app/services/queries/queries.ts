@@ -32,6 +32,7 @@ export const GET_MEDIA_COLLECTION_FOR_USERNAME = gql<{MediaListCollection: Media
                 name {
                   full
                   userPreferred
+                  native
                 }
                 image {
                   large
@@ -39,6 +40,12 @@ export const GET_MEDIA_COLLECTION_FOR_USERNAME = gql<{MediaListCollection: Media
                 siteUrl
                 favourites
                 gender
+                dateOfBirth {
+                  day
+                  month
+                }
+                bloodType
+                age
               }
             }
           }
