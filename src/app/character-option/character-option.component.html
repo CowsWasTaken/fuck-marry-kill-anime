@@ -1,1 +1,8 @@
-<img class="rounded-lg" [src]="character.image.large" [alt]="character.name.userPreferred">
+<img [alt]="character.name.userPreferred" [src]="character.image.large" class="rounded-lg">
+<mat-button-toggle-group aria-label="Font Style" name="switch-option">
+  <ng-container>
+    <mat-button-toggle value="fuck">Bold</mat-button-toggle>
+    <mat-button-toggle value="marry">Italic</mat-button-toggle>
+    <mat-button-toggle value="kill">Underline</mat-button-toggle>
+  </ng-container>
+</mat-button-toggle-group>
