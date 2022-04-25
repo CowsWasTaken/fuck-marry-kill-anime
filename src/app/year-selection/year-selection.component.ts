@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {YearFilter} from "../../models/Filter/YearFilter";
 import {Observable} from "rxjs";
+import { YearFilterType } from 'src/models/Filter/YearFilterType';
 
 @Component({
   selector: 'app-year-selection',
@@ -17,8 +18,10 @@ export class YearSelectionComponent implements OnInit {
   inputYear: number
   tooltipDelay = 100 // in ms
 
-  defaultFilterType: 'before' | 'after' | 'equal' | 'disabled' = 'disabled'
-  filterType: 'before' | 'after' | 'equal' | 'disabled'
+  YearFilterType = YearFilterType
+
+  defaultFilterType: YearFilterType = YearFilterType.disabled
+  filterType: YearFilterType
 
   constructor() {
   }
