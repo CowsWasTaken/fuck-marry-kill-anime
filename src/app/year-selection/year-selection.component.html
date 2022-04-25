@@ -1,6 +1,6 @@
 <div class="flex">
   <div class="flex-auto">
-    <mat-button-toggle (click)="filterType='disabled';emitChange()"
+    <mat-button-toggle (click)="filterType=YearFilterType.disabled;emitChange()"
                        [checked]="filterType==='disabled'"
                        [matTooltipShowDelay]="tooltipDelay" aria-label="disabled-label" class="mr-6"
                        matTooltip="Disabled">
@@ -8,15 +8,15 @@
     </mat-button-toggle>
     <mat-button-toggle-group (click)="emitChange()" [(ngModel)]="filterType">
       <mat-button-toggle [matTooltipShowDelay]="tooltipDelay"
-                         aria-label="before-label" matTooltip="Before" value="before">
+                         aria-label="before-label" matTooltip="Before" [value]="YearFilterType.before">
         <mat-icon>first_page</mat-icon>
       </mat-button-toggle>
       <mat-button-toggle [matTooltipShowDelay]="tooltipDelay"
-                         aria-label="equal-label" matTooltip="Equal" value="equal">
+                         aria-label="equal-label" matTooltip="Equal" [value]="YearFilterType.equal">
         <mat-icon class="material-icons-outlined">view_agenda</mat-icon>
       </mat-button-toggle>
       <mat-button-toggle [matTooltipShowDelay]="tooltipDelay"
-                         aria-label="after-label" matTooltip="After" value="after">
+                         aria-label="after-label" matTooltip="After" [value]="YearFilterType.after">
         <mat-icon>last_page</mat-icon>
       </mat-button-toggle>
 
