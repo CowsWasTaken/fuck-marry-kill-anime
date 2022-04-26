@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false, 
-  CLIENT_ID: 7959
+  CLIENT_ID: 0000
 };
 
 /*
