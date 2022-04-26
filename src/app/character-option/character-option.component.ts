@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Character} from "../../models/DTO/Character";
 import {PickOption} from "../../models/PickOption";
 import {TakenPick} from "../../models/TakenPick";
+import {PickingService} from "../services/picking.service";
 
 @Component({
   selector: 'app-character-option',
@@ -11,40 +12,29 @@ import {TakenPick} from "../../models/TakenPick";
 export class CharacterOptionComponent implements OnInit {
 
   @Input() character: Character
-  @Output('pick') pickEmitter = new EventEmitter<TakenPick>()
   PickOption = PickOption
-  pick: PickOption | undefined
+  pick: PickOption = PickOption.UNCHECKED
 
-  constructor() {
-  }
-
-  private _takenPicks: TakenPick[]
-
-  get takenPicks() {
-    return this._takenPicks
-  }
-
-  @Input() set takenPicks(takenPicks: TakenPick[]) {
-    this._takenPicks = takenPicks
-    this.resetIfPickIsTaken()
+  constructor(private pickingService: PickingService) {
+    pickingService.takenPicks.subscribe(takenPicks => {
+      this.resetIfPickIsTaken(takenPicks)
+    })
   }
 
   ngOnInit(): void {
   }
 
   emitChange() {
-    if (this.pick !== undefined) {
-      this.pickEmitter.emit({pick: this.pick, character: this.character})
+    if (this.pick !== PickOption.UNCHECKED) {
+      this.pickingService.setPick({pick: this.pick, character: this.character})
     }
   }
 
-  resetIfPickIsTaken() {
-    // TODO not getting called idk why
-    console.log('here')
-    if (this.pick === undefined) {
+  resetIfPickIsTaken(takenPicks: TakenPick[]) {
+    if (this.pick === PickOption.UNCHECKED) {
       return
     }
-    for (const takenPicksKey of this.takenPicks) {
+    for (const takenPicksKey of takenPicks) {
       if (this.pick === takenPicksKey.pick && this.character !== takenPicksKey.character) {
         this.pick = PickOption.UNCHECKED
       }

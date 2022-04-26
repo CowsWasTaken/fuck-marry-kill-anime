@@ -23,7 +23,7 @@
 
       <mat-form-field appearance="fill" class="w-full">
         <mat-label>Name</mat-label>
-        <input [(ngModel)]="userNameInput" matInput>
+        <input [(ngModel)]="userNameInput" (ngModelChange)="onNameFilterChange($event)" matInput>
         <button (click)="userNameInput=''" *ngIf="userNameInput" aria-label="Clear" mat-icon-button matSuffix>
           <mat-icon>close</mat-icon>
         </button>
@@ -44,7 +44,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <app-chips-genre></app-chips-genre>
+      <app-chips-genre [resetEvent]="$reset.asObservable()" (genreEmitter)="onGenreFilterChange($event)"></app-chips-genre>
 
       <mat-action-row>
         <button (click)="prevStep()" color="warn" mat-button>Previous</button>
@@ -83,7 +83,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <app-status-selection></app-status-selection>
+      <app-status-selection [resetEvent]="$reset.asObservable()" (statusEmitter)="onStatusFilterChange($event)"></app-status-selection>
 
       <mat-action-row>
         <button (click)="prevStep()" color="warn" mat-button>Previous</button>
@@ -95,7 +95,7 @@
     <div class="flex space-x-11 justify-end" >
 
       <button (click)="reset()" color="warn" mat-stroked-button>Reset</button>
-      <button [disabled]="!isValid()" color="primary" mat-stroked-button>Start</button>
+      <button (click)="start()" [disabled]="!isValid()" color="primary" mat-stroked-button>Start</button>
 
     </div>
   </mat-card>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { map } from 'rxjs';
-import { GET_MEDIA_COLLECTION_FOR_USERNAME } from './queries/queries';
+import { GET_MEDIA_COLLECTION_FOR_USERNAME } from '../graphql/queries/queries';
 
 @Injectable({
   providedIn: 'root',

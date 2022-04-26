@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SettingsFilter} from "../../models/Filter/SettingsFilter";
 import {YearFilter} from "../../models/Filter/YearFilter";
-import {Observable, Subject} from "rxjs";
+import {Subject} from "rxjs";
+import {StatusFilter} from "../../models/Filter/StatusFilter";
 
 @Component({
   selector: 'app-game-settings',
@@ -9,6 +10,9 @@ import {Observable, Subject} from "rxjs";
   styleUrls: ['./game-settings.component.css']
 })
 export class GameSettingsComponent implements OnInit {
+
+  @Output()
+  filterEmitter = new EventEmitter<SettingsFilter>()
 
   selectedIndex = [{type  : 'ANIME'},  {type: 'MANGA'}]
 
@@ -19,11 +23,6 @@ export class GameSettingsComponent implements OnInit {
   settingsFilter : SettingsFilter = {}
 
   $reset = new Subject<void>()
-
-  onYearFilterChange($event: YearFilter) {
-    console.log($event)
-    this.settingsFilter.yearPreference = $event
-  }
 
   constructor() { }
 
@@ -51,6 +50,26 @@ export class GameSettingsComponent implements OnInit {
   reset() {
     this.$reset.next()
     this.userNameInput = ''
+  }
+
+  onGenreFilterChange($event: string[] | undefined) {
+    this.settingsFilter.genres = $event
+  }
+
+  onStatusFilterChange($event: StatusFilter[] | undefined) {
+    this.settingsFilter.status = $event
+  }
+
+  onYearFilterChange($event: YearFilter | undefined) {
+    this.settingsFilter.yearPreference = $event
+  }
+
+  onNameFilterChange($event: string) {
+    this.settingsFilter.name = $event
+  }
+
+  start() {
+    this.filterEmitter.emit(this.settingsFilter)
   }
 }
 
