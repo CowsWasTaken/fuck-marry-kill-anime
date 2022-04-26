@@ -1,16 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {map, Observable, startWith} from "rxjs";
 import {FormControl} from "@angular/forms";
 import {Genres} from '../constants/Genres';
+import {FilterComponent} from "../interfaces/FilterComponent";
 
 @Component({
   selector: 'app-chips-genre', templateUrl: './chips-genre.component.html', styleUrls: ['./chips-genre.component.css']
 })
-export class ChipsGenreComponent implements OnInit {
+export class ChipsGenreComponent implements OnInit, FilterComponent {
 
+  @Input()
+  resetEvent?: Observable<void>
+  @Output()
+  genreEmitter= new EventEmitter<string[] | undefined>()
   separatorKeysCodes: number[] = [ENTER, COMMA];
   genreCtrl = new FormControl();
   filteredGenres: Observable<string[]>;
@@ -23,7 +28,16 @@ export class ChipsGenreComponent implements OnInit {
     this.filteredGenres = this.genreCtrl.valueChanges.pipe(startWith(null), map((genre: string | null) => (genre ? this._filter(genre) : this.allGenres.slice())),);
   }
 
+  setToDefault() {
+    this.genres.clear()
+    this.emitEmpty()
+  }
+
   ngOnInit(): void {
+    this.emitEmpty()
+    this.resetEvent!.subscribe(() => {
+      this.setToDefault()
+    })
   }
 
   add(event: MatChipInputEvent): void {
@@ -40,16 +54,23 @@ export class ChipsGenreComponent implements OnInit {
     event.chipInput!.clear();
 
     this.genreCtrl.setValue(null);
+    this.emitChange()
   }
 
   remove(fruit: string): void {
     this.genres.delete(fruit);
+    if (this.genres.size === 0) {
+      this.emitEmpty()
+    } else {
+      this.emitChange()
+    }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.genres.add(event.option.viewValue);
     this.genreInput = '';
     this.genreCtrl.setValue(null);
+    this.emitChange()
   }
 
   private _filter(value: string): string[] {
@@ -65,5 +86,13 @@ export class ChipsGenreComponent implements OnInit {
       }
     }
     return ''
+  }
+
+  emitChange() {
+    this.genreEmitter.emit(Array.from(this.genres))
+  }
+
+  emitEmpty() {
+    this.genreEmitter.emit(undefined)
   }
 }
