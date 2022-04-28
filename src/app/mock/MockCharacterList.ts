@@ -1,6 +1,6 @@
-import {Character} from "../../models/DTO/Character";
+import {CharacterPartsFragment} from "../../generated/graphql";
 
-export const MockCharacterList: Character[] = [ {
+export const MockCharacterList: CharacterPartsFragment[] = [ {
   "id": 45627, "name": {
     "full": "Levi", "userPreferred": "Levi", "native": "リヴァイ"
   }, "image": {

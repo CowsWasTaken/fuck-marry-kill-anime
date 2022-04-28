@@ -3,6 +3,7 @@ import {SettingsFilter} from "../../models/Filter/SettingsFilter";
 import {YearFilter} from "../../models/Filter/YearFilter";
 import {Subject} from "rxjs";
 import {StatusFilter} from "../../models/Filter/StatusFilter";
+import {MediaType} from "../../generated/graphql";
 
 @Component({
   selector: 'app-game-settings',
@@ -13,13 +14,13 @@ export class GameSettingsComponent implements OnInit {
 
   @Output() filterEmitter = new EventEmitter<SettingsFilter>()
 
-  selectedIndex = [{type: 'ANIME'}, {type: 'MANGA'}]
+  selectedIndex : MediaType[] = [MediaType.Anime, MediaType.Manga]
 
   public currentIndex = 0;
 
   userNameInput = '';
 
-  settingsFilter: SettingsFilter = {type: this.selectedIndex[this.currentIndex].type}
+  settingsFilter: SettingsFilter = {type: this.selectedIndex[this.currentIndex]}
 
   $reset = new Subject<void>()
   step = 0;

@@ -1,16 +1,15 @@
 import {Component} from '@angular/core';
-import {MediaListCollection} from 'src/models/DTO/MediaListCollection';
 import {AniListHttpClientService} from './services/ani-list-http-client.service';
-import {MockCharacterList} from "./mock-data/MockCharacterList";
+import {MockCharacterList} from "./mock/MockCharacterList";
 import {SettingsFilter} from "../models/Filter/SettingsFilter";
-import {CharacterRole, MediaType} from "../generated/graphql";
+import {CharacterRole, MediaListCollectionPartsFragment, MediaType} from "../generated/graphql";
 
 @Component({
   selector: 'app-root', templateUrl: './app.component.html', styleUrls: ['./app.component.sass'],
 })
 export class AppComponent {
   title = 'fuck-marry-kill-anime';
-  result: MediaListCollection | null = null
+  result: MediaListCollectionPartsFragment | null = null
   mockCharacterList = MockCharacterList
 
   MediaType = MediaType

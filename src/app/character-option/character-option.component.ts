@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Character} from "../../models/DTO/Character";
 import {PickOption} from "../../models/PickOption";
 import {TakenPick} from "../../models/TakenPick";
 import {PickingService} from "../services/picking.service";
+import {CharacterPartsFragment} from "../../generated/graphql";
 
 @Component({
   selector: 'app-character-option',
@@ -11,7 +11,7 @@ import {PickingService} from "../services/picking.service";
 })
 export class CharacterOptionComponent implements OnInit {
 
-  @Input() character: Character
+  @Input() character: CharacterPartsFragment
   PickOption = PickOption
   pick: PickOption = PickOption.UNCHECKED
 

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {TakenPick} from "../../models/TakenPick";
 import {PickOption} from "../../models/PickOption";
-import {Character} from "../../models/DTO/Character";
+import {CharacterPartsFragment} from "../../generated/graphql";
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +55,7 @@ export class PickingService {
    * @param character character to remove
    * @param list list from which character gets deleted
    */
-  private removePickForCharacter(character: Character, list: TakenPick[]) {
+  private removePickForCharacter(character: CharacterPartsFragment, list: TakenPick[]) {
     const matchingCharacterIndex = list.findIndex(element => element.character === character);
     PickingService.removeIndexFromList(matchingCharacterIndex, list)
   }

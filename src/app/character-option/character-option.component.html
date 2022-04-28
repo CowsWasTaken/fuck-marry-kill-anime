@@ -3,7 +3,7 @@
   <mat-tab-group dynamicHeight>
     <mat-tab label="Image">
       <div class="flex justify-center mt-6 mb-3">
-        <img [alt]="character.name.userPreferred" [src]="character.image.large" class="rounded-lg ">
+        <img [alt]="character.name!.userPreferred" [src]="character.image?.large" class="rounded-lg" [style.height]="'345px'" >
       </div>
     </mat-tab>
 

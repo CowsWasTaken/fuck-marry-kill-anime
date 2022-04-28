@@ -1,12 +1,12 @@
 <mat-card>
-  <mat-card-title>{{character.name.userPreferred}}</mat-card-title>
-  <mat-card-subtitle>{{character.name.native }}, {{character.name.full}}</mat-card-subtitle>
+  <mat-card-title>{{character?.name?.userPreferred}}</mat-card-title>
+  <mat-card-subtitle>{{character?.name?.native }}, {{character?.name?.full}}</mat-card-subtitle>
   <mat-card-content>
-    <p>Age: {{character.age || 'n/a'}}</p>
-    <p>Birthday: {{character.dateOfBirth | fuzzyDate }}</p>
-    <p>Gender: {{character.gender || 'n/a'}}</p>
-    <p>Favourites: {{character.favourites || 'n/a'}}</p>
-    <p>Blood Type: {{character.bloodType || 'n/a'}}</p>
+    <p>Age: {{character?.age || 'n/a'}}</p>
+    <p>Birthday: {{character?.dateOfBirth! | fuzzyDate}}</p>
+    <p>Gender: {{character?.gender || 'n/a'}}</p>
+    <p>Favourites: {{character?.favourites || 'n/a'}}</p>
+    <p>Blood Type: {{character?.bloodType || 'n/a'}}</p>
   </mat-card-content>
   <mat-card-actions>
     <!--            TODO implement this favourite button-->

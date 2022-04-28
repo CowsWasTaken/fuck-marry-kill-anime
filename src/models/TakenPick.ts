@@ -1,7 +1,7 @@
 import {PickOption} from "./PickOption";
-import {Character} from "./DTO/Character";
+import {CharacterPartsFragment} from "../generated/graphql";
 
 export interface TakenPick {
   pick: PickOption,
-  character: Character
+  character: CharacterPartsFragment
 }
