@@ -1,0 +1,36 @@
+{
+  "possibleTypes": {
+    "ActivityUnion": [
+      "ListActivity",
+      "MessageActivity",
+      "TextActivity"
+    ],
+    "LikeableUnion": [
+      "ActivityReply",
+      "ListActivity",
+      "MessageActivity",
+      "TextActivity",
+      "Thread",
+      "ThreadComment"
+    ],
+    "NotificationUnion": [
+      "ActivityLikeNotification",
+      "ActivityMentionNotification",
+      "ActivityMessageNotification",
+      "ActivityReplyLikeNotification",
+      "ActivityReplyNotification",
+      "ActivityReplySubscribedNotification",
+      "AiringNotification",
+      "FollowingNotification",
+      "MediaDataChangeNotification",
+      "MediaDeletionNotification",
+      "MediaMergeNotification",
+      "RelatedMediaAdditionNotification",
+      "ThreadCommentLikeNotification",
+      "ThreadCommentMentionNotification",
+      "ThreadCommentReplyNotification",
+      "ThreadCommentSubscribedNotification",
+      "ThreadLikeNotification"
+    ]
+  }
+}

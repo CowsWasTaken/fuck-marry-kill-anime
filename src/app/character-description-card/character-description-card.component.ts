@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Character} from "../../models/DTO/Character";
+import {CharacterPartsFragment} from "../../generated/graphql";
 
 @Component({
   selector: 'app-character-description-card',
@@ -11,7 +11,7 @@ export class CharacterDescriptionCardComponent implements OnInit {
   constructor() { }
 
   @Input()
-  character: Character
+  character: CharacterPartsFragment
 
   ngOnInit(): void {
   }

@@ -3,6 +3,7 @@ import {SettingsFilter} from "../../models/Filter/SettingsFilter";
 import {YearFilter} from "../../models/Filter/YearFilter";
 import {Subject} from "rxjs";
 import {StatusFilter} from "../../models/Filter/StatusFilter";
+import {MediaType} from "../../generated/graphql";
 
 @Component({
   selector: 'app-game-settings',
@@ -11,25 +12,24 @@ import {StatusFilter} from "../../models/Filter/StatusFilter";
 })
 export class GameSettingsComponent implements OnInit {
 
-  @Output()
-  filterEmitter = new EventEmitter<SettingsFilter>()
+  @Output() filterEmitter = new EventEmitter<SettingsFilter>()
 
-  selectedIndex = [{type  : 'ANIME'},  {type: 'MANGA'}]
+  selectedIndex : MediaType[] = [MediaType.Anime, MediaType.Manga]
 
   public currentIndex = 0;
 
   userNameInput = '';
 
-  settingsFilter : SettingsFilter = {}
+  settingsFilter: SettingsFilter = {type: this.selectedIndex[this.currentIndex]}
 
   $reset = new Subject<void>()
+  step = 0;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
-  step = 0;
 
   setStep(index: number) {
     this.step = index;
@@ -43,7 +43,7 @@ export class GameSettingsComponent implements OnInit {
     this.step--;
   }
 
-  isValid():boolean {
+  isValid(): boolean {
     return this.userNameInput.length > 0
   }
 

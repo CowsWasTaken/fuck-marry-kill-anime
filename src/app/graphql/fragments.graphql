@@ -1,0 +1,55 @@
+fragment UserParts on User {
+  id
+  name
+  avatar {
+    large
+  }
+}
+
+fragment CharacterParts on Character {
+  id
+  name {
+    full
+    userPreferred
+    native
+  }
+  image {
+    large
+  }
+  siteUrl
+  favourites
+  gender
+  dateOfBirth {
+    day
+    month
+  }
+  bloodType
+  age
+}
+
+fragment MediaListCollectionParts on MediaListCollection {
+  lists {
+    name
+    status
+    entries {
+      id
+      media {
+        coverImage {
+          large
+        }
+        siteUrl
+        title {
+          userPreferred
+        }
+        characters (role: $role){
+          nodes {
+            ...CharacterParts
+          }
+        }
+      }
+    }
+  }
+  user {
+    ...UserParts
+  }
+}
