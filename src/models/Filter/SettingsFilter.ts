@@ -6,4 +6,5 @@ export interface SettingsFilter {
   yearPreference?: YearFilter,
   genres?: string[],
   status?: StatusFilter[],
+  type?: string
 }
