@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { map } from 'rxjs';
-import { GET_MEDIA_COLLECTION_FOR_USERNAME } from '../graphql/queries/queries';
+import {GET_TYPE} from "../graphql/queries/queries";
+import {CharacterRole, MediaType} from "../../generated/graphql";
 
 @Injectable({
   providedIn: 'root',
@@ -9,11 +9,13 @@ import { GET_MEDIA_COLLECTION_FOR_USERNAME } from '../graphql/queries/queries';
 export class AniListHttpClientService {
   constructor(private apollo: Apollo) {}
 
-  getUserAnime(userName: string) {
+  getUserAndType(userName: string, type: MediaType, role?: CharacterRole) {
     return this.apollo.query({
-      query: GET_MEDIA_COLLECTION_FOR_USERNAME,
+      query: GET_TYPE,
       variables: {
         userName,
+        type,
+        role
       },
     });
   }
