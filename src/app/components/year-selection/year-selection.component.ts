@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {YearFilter} from "../../models/Filter/YearFilter";
 import {Observable} from "rxjs";
-import { YearFilterType } from 'src/models/Filter/YearFilterType';
-import {FilterComponent} from "../interfaces/FilterComponent";
+import { YearFilterType } from 'src/app/models/Filter/YearFilterType';
+import {FilterComponent} from "../../interfaces/FilterComponent";
 
 @Component({
   selector: 'app-year-selection',

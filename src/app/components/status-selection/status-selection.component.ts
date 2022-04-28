@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Observable} from "rxjs";
-import {FilterComponent} from "../interfaces/FilterComponent";
+import {FilterComponent} from "../../interfaces/FilterComponent";
 import {StatusFilter} from "../../models/Filter/StatusFilter";
 
 @Component({

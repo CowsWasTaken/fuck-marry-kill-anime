@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {AniListHttpClientService} from './services/ani-list-http-client.service';
 import {MockCharacterList} from "./mock/MockCharacterList";
-import {SettingsFilter} from "../models/Filter/SettingsFilter";
+import {SettingsFilter} from "./models/Filter/SettingsFilter";
 import {CharacterRole, MediaListCollectionPartsFragment, MediaType} from "../generated/graphql";
 
 @Component({

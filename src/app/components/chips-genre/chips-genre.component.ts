@@ -4,8 +4,8 @@ import {MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {map, Observable, startWith} from "rxjs";
 import {FormControl} from "@angular/forms";
-import {Genres} from '../constants/Genres';
-import {FilterComponent} from "../interfaces/FilterComponent";
+import {Genres} from '../../constants/Genres';
+import {FilterComponent} from "../../interfaces/FilterComponent";
 
 @Component({
   selector: 'app-chips-genre', templateUrl: './chips-genre.component.html', styleUrls: ['./chips-genre.component.css']

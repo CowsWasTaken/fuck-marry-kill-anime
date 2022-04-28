@@ -3,7 +3,7 @@ import {SettingsFilter} from "../../models/Filter/SettingsFilter";
 import {YearFilter} from "../../models/Filter/YearFilter";
 import {Subject} from "rxjs";
 import {StatusFilter} from "../../models/Filter/StatusFilter";
-import {MediaType} from "../../generated/graphql";
+import {MediaType} from "../../../generated/graphql";
 
 @Component({
   selector: 'app-game-settings',
