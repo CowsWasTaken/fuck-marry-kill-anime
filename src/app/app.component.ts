@@ -28,10 +28,12 @@ export class AppComponent {
   }
 
   onFilterChange(settingsFilter: SettingsFilter) {
-    let {name} = settingsFilter
+    let {name, type, status} = settingsFilter
+    console.log(settingsFilter);
+    
     if (name === undefined) {
       throw Error('Cannot search for Username undefined')
     }
-    this.getUserAndType(name, settingsFilter.type, CharacterRole.Main, [MediaListStatus.Completed, MediaListStatus.Current])
+    this.getUserAndType(name, type, CharacterRole.Main, status)
   }
 }

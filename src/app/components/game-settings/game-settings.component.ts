@@ -2,8 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SettingsFilter} from "../../models/Filter/SettingsFilter";
 import {YearFilter} from "../../models/Filter/YearFilter";
 import {Subject} from "rxjs";
-import {StatusFilter} from "../../models/Filter/StatusFilter";
-import {MediaType} from "../../../generated/graphql";
+import {MediaListStatus, MediaType} from "../../../generated/graphql";
 
 @Component({
   selector: 'app-game-settings',
@@ -56,7 +55,7 @@ export class GameSettingsComponent implements OnInit {
     this.settingsFilter.genres = $event
   }
 
-  onStatusFilterChange($event: StatusFilter[] | undefined) {
+  onStatusFilterChange($event: MediaListStatus[]) {
     this.settingsFilter.status = $event
   }
 
@@ -70,6 +69,12 @@ export class GameSettingsComponent implements OnInit {
 
   start() {
     this.filterEmitter.emit(this.settingsFilter)
+  }
+
+  onTypeChange($event: MediaType) {
+    console.log($event);
+    
+    this.settingsFilter.type = $event
   }
 }
 

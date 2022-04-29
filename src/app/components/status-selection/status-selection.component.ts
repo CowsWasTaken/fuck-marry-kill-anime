@@ -13,7 +13,7 @@ export class StatusSelectionComponent implements OnInit, FilterComponent {
 
   @Input() resetEvent?: Observable<void>
 
-  @Output() statusEmitter = new EventEmitter<StatusFilter[]>()
+  @Output() statusEmitter = new EventEmitter<MediaListStatus[]>()
 
   statusList: StatusFilter[]
 
@@ -61,10 +61,22 @@ export class StatusSelectionComponent implements OnInit, FilterComponent {
   }
 
   emitChange() {
-    this.statusEmitter.emit(this.statusList)
+    const list = StatusSelectionComponent.convertList(this.statusList)
+    this.statusEmitter.emit(list)
   }
 
   emitEmpty() {
-    this.statusEmitter.emit(undefined)
+    const list = StatusSelectionComponent.convertList(this.defaultList)
+    this.statusEmitter.emit(list)
+  }
+
+  private static convertList(list: StatusFilter[]) : any[]{
+    const convList : MediaListStatus[] = []
+    for (const status of list) {
+      if (status.checked) {
+        convList.push(status.status)
+      }
+    }
+    return convList;
   }
 }

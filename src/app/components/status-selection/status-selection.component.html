@@ -4,7 +4,7 @@
 <mat-checkbox (click)="emitChange()" *ngFor="let status of statusList, let last = last"
               [(ngModel)]="status.checked" [checked]="status.checked" (change)="checkAllComplete()"
               color="primary" [class]="status.checked.toString()">
-{{status.status}}
+{{status.status | titlecase}}
 </mat-checkbox>
 </div>
 
