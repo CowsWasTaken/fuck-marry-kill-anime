@@ -14,7 +14,6 @@ import {GameSettingsComponent} from "./components/game-settings/game-settings.co
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatIconModule} from "@angular/material/icon";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
 import {ChipsGenreComponent} from "./components/chips-genre/chips-genre.component";
 import {MatChipsModule} from "@angular/material/chips";

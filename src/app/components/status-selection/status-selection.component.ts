@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Observable} from "rxjs";
 import {FilterComponent} from "../../interfaces/FilterComponent";
 import {StatusFilter} from "../../models/Filter/StatusFilter";
+import {MediaListStatus} from "../../../generated/graphql";
 
 @Component({
   selector: 'app-status-selection',
@@ -17,10 +18,12 @@ export class StatusSelectionComponent implements OnInit, FilterComponent {
   statusList: StatusFilter[]
 
   defaultList = [
-    { name: 'Watching', completed: true },
-    { name: 'Completed', completed: true },
-    { name: 'Paused', completed: true },
-    { name: 'Planning', completed: true }
+    { status: MediaListStatus.Completed, checked: true },
+    { status: MediaListStatus.Current, checked: true },
+    { status: MediaListStatus.Paused, checked: false },
+    { status: MediaListStatus.Planning, checked: false },
+    { status: MediaListStatus.Repeating, checked: false },
+    { status: MediaListStatus.Dropped, checked: false },
   ]
   allComplete = true
 
@@ -33,7 +36,7 @@ export class StatusSelectionComponent implements OnInit, FilterComponent {
 
   setAllTasks(status: boolean) {
     for (const item of this.statusList) {
-      item.completed = status
+      item.checked = status
     }
   }
 
@@ -43,7 +46,7 @@ export class StatusSelectionComponent implements OnInit, FilterComponent {
 
   isAllComplete() {
     for (const item of this.statusList) {
-      if (!item.completed) {
+      if (!item.checked) {
         return false
       }
     }

@@ -1,4 +1,6 @@
+import {MediaListStatus} from "../../../generated/graphql";
+
 export interface StatusFilter {
-  name: string,
-  completed: boolean
+  status: MediaListStatus,
+  checked: boolean
 }

@@ -2,9 +2,9 @@
 <div class="flex space-x-4">
 
 <mat-checkbox (click)="emitChange()" *ngFor="let status of statusList, let last = last"
-              [(ngModel)]="status.completed" [checked]="status.completed" (change)="checkAllComplete()"
-              color="primary" [class]="status.completed.toString()">
-{{status.name}}
+              [(ngModel)]="status.checked" [checked]="status.checked" (change)="checkAllComplete()"
+              color="primary" [class]="status.checked.toString()">
+{{status.status}}
 </mat-checkbox>
 </div>
 

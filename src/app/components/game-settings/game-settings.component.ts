@@ -20,7 +20,7 @@ export class GameSettingsComponent implements OnInit {
 
   userNameInput = '';
 
-  settingsFilter: SettingsFilter = {type: this.selectedIndex[this.currentIndex]}
+  settingsFilter: SettingsFilter = {name: this.userNameInput, type: this.selectedIndex[this.currentIndex]}
 
   $reset = new Subject<void>()
   step = 0;
