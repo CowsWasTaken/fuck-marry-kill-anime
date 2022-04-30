@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
-import {TakenPick} from "../../models/TakenPick";
-import {PickOption} from "../../models/PickOption";
+import {PickTaken} from "../models/Picking/PickTaken";
+import {PickOption} from "../models/Picking/PickOption";
 import {CharacterPartsFragment} from "../../generated/graphql";
 
 @Injectable({
@@ -9,8 +9,9 @@ import {CharacterPartsFragment} from "../../generated/graphql";
 })
 export class PickingService {
 
-  takenPicks = new BehaviorSubject<TakenPick[]>([])
+  takenPicks = new BehaviorSubject<PickTaken[]>([])
 
+  submittedPicks: PickTaken[][] = []
 
   constructor() {
   }
@@ -31,7 +32,7 @@ export class PickingService {
   }
 
   // works as it should
-  setPick(newPick: TakenPick) {
+  setPick(newPick: PickTaken) {
     const picks = this.takenPicks.getValue()
     this.cleanUpCurrentList(newPick, picks)
     picks.push(newPick)
@@ -45,7 +46,7 @@ export class PickingService {
    * cleans up the current list that a new value can be added with no conflicts
    * such as double PickOption or the same Character twice in the list
    */
-  private cleanUpCurrentList(takenPick: TakenPick, currentList: TakenPick[]) {
+  private cleanUpCurrentList(takenPick: PickTaken, currentList: PickTaken[]) {
     this.removePickForCharacter(takenPick.character, currentList)
     this.removeMatchingPick(takenPick.pick, currentList)
   }
@@ -55,7 +56,7 @@ export class PickingService {
    * @param character character to remove
    * @param list list from which character gets deleted
    */
-  private removePickForCharacter(character: CharacterPartsFragment, list: TakenPick[]) {
+  private removePickForCharacter(character: CharacterPartsFragment, list: PickTaken[]) {
     const matchingCharacterIndex = list.findIndex(element => element.character === character);
     PickingService.removeIndexFromList(matchingCharacterIndex, list)
   }
@@ -66,8 +67,13 @@ export class PickingService {
    * @param list list from which pick should be removed
    * @private
    */
-  private removeMatchingPick(pick: PickOption, list: TakenPick[]) {
+  private removeMatchingPick(pick: PickOption, list: PickTaken[]) {
     const matchingPickTypeIndex = list.findIndex(element => element.pick === pick) // index for the same PickOption Type
     PickingService.removeIndexFromList(matchingPickTypeIndex, list)
   }
-}
+
+  submitPicks() {
+    this.submittedPicks.push(this.takenPicks.getValue())
+    this.takenPicks.next([])
+  }
+ }

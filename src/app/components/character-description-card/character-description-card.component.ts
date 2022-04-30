@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CharacterPartsFragment} from "../../generated/graphql";
+import {CharacterPartsFragment} from "../../../generated/graphql";
 
 @Component({
   selector: 'app-character-description-card',

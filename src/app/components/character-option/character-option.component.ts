@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PickOption} from "../../models/PickOption";
-import {TakenPick} from "../../models/TakenPick";
-import {PickingService} from "../services/picking.service";
-import {CharacterPartsFragment} from "../../generated/graphql";
+import {PickOption} from "../../models/Picking/PickOption";
+import {PickTaken} from "../../models/Picking/PickTaken";
+import {PickingService} from "../../services/picking.service";
+import {CharacterPartsFragment} from "../../../generated/graphql";
 
 @Component({
   selector: 'app-character-option',
@@ -30,7 +30,7 @@ export class CharacterOptionComponent implements OnInit {
     }
   }
 
-  resetIfPickIsTaken(takenPicks: TakenPick[]) {
+  resetIfPickIsTaken(takenPicks: PickTaken[]) {
     if (this.pick === PickOption.UNCHECKED) {
       return
     }

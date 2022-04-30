@@ -4,8 +4,8 @@ import {MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {map, Observable, startWith} from "rxjs";
 import {FormControl} from "@angular/forms";
-import {Genres} from '../constants/Genres';
-import {FilterComponent} from "../interfaces/FilterComponent";
+import {FilterComponent} from "../../interfaces/FilterComponent";
+import {GenreCollection} from "../../constants/GenreCollection";
 
 @Component({
   selector: 'app-chips-genre', templateUrl: './chips-genre.component.html', styleUrls: ['./chips-genre.component.css']
@@ -20,7 +20,7 @@ export class ChipsGenreComponent implements OnInit, FilterComponent {
   genreCtrl = new FormControl();
   filteredGenres: Observable<string[]>;
   genres: Set<string> = new Set([]);
-  allGenres: string[] = Genres;
+  allGenres: string[] = GenreCollection;
 
   genreInput: string = ''
 

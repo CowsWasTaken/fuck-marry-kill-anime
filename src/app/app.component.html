@@ -1,17 +1,16 @@
 <app-login></app-login>
-<button (click)="getUserAndType('appleJackFanAcc', MediaType.Manga)" color="accent" mat-stroked-button>Do Something</button>
+<button (click)="getUserAndType('appleJackFanAcc', MediaType.Manga)" color="accent" mat-stroked-button>Do Something
+</button>
 <div class="m-20">
+
+  <div *ngIf="characters" class="mb-20">
+    <app-character [characters]="characters"></app-character>
+  </div>
 
   <div class="border-2 border-gray-300 rounded-md">
     <app-game-settings (filterEmitter)="onFilterChange($event)"></app-game-settings>
   </div>
 
 
-  <div class="flex justify-between mt-20">
-
-    <app-character-option [character]="mockCharacterList[0]" ></app-character-option>
-    <app-character-option [character]="mockCharacterList[1]"></app-character-option>
-    <app-character-option [character]="mockCharacterList[2]"></app-character-option>
-  </div>
 </div>
 

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthService } from '../services/auth-service.service';
-import { AuthToken } from './models/AuthToken';
+import { AuthService } from '../../services/auth-service.service';
+import { AuthToken } from '../../models/Auth/AuthToken';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(async (res) => {
         if (res.access_token && res.expires_in && res.token_type) {
-          console.log('user authenticated');          
+          console.log('user authenticated');
           this.authService.update(res as AuthToken);
         }
       });

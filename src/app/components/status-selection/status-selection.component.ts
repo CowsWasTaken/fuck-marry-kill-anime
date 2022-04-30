@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Observable} from "rxjs";
-import {FilterComponent} from "../interfaces/FilterComponent";
+import {FilterComponent} from "../../interfaces/FilterComponent";
 import {StatusFilter} from "../../models/Filter/StatusFilter";
+import {MediaListStatus} from "../../../generated/graphql";
 
 @Component({
   selector: 'app-status-selection',
@@ -10,17 +11,21 @@ import {StatusFilter} from "../../models/Filter/StatusFilter";
 })
 export class StatusSelectionComponent implements OnInit, FilterComponent {
 
+  // TODO fix checkbox not updating ui in frontedn when reset event triggers
+
   @Input() resetEvent?: Observable<void>
 
-  @Output() statusEmitter = new EventEmitter<StatusFilter[]>()
+  @Output() statusEmitter = new EventEmitter<MediaListStatus[]>()
 
   statusList: StatusFilter[]
 
   defaultList = [
-    { name: 'Watching', completed: true },
-    { name: 'Completed', completed: true },
-    { name: 'Paused', completed: true },
-    { name: 'Planning', completed: true }
+    { status: MediaListStatus.Completed, checked: true },
+    { status: MediaListStatus.Current, checked: false },
+    { status: MediaListStatus.Paused, checked: false },
+    { status: MediaListStatus.Planning, checked: false },
+    { status: MediaListStatus.Repeating, checked: true },
+    { status: MediaListStatus.Dropped, checked: false },
   ]
   allComplete = true
 
@@ -33,7 +38,7 @@ export class StatusSelectionComponent implements OnInit, FilterComponent {
 
   setAllTasks(status: boolean) {
     for (const item of this.statusList) {
-      item.completed = status
+      item.checked = status
     }
   }
 
@@ -43,7 +48,7 @@ export class StatusSelectionComponent implements OnInit, FilterComponent {
 
   isAllComplete() {
     for (const item of this.statusList) {
-      if (!item.completed) {
+      if (!item.checked) {
         return false
       }
     }
@@ -58,10 +63,22 @@ export class StatusSelectionComponent implements OnInit, FilterComponent {
   }
 
   emitChange() {
-    this.statusEmitter.emit(this.statusList)
+    const list = StatusSelectionComponent.convertList(this.statusList)
+    this.statusEmitter.emit(list)
   }
 
   emitEmpty() {
-    this.statusEmitter.emit(undefined)
+    const list = StatusSelectionComponent.convertList(this.defaultList)
+    this.statusEmitter.emit(list)
+  }
+
+  private static convertList(list: StatusFilter[]) : any[]{
+    const convList : MediaListStatus[] = []
+    for (const status of list) {
+      if (status.checked) {
+        convList.push(status.status)
+      }
+    }
+    return convList;
   }
 }

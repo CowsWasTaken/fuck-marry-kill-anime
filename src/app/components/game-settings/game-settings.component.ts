@@ -2,8 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SettingsFilter} from "../../models/Filter/SettingsFilter";
 import {YearFilter} from "../../models/Filter/YearFilter";
 import {Subject} from "rxjs";
-import {StatusFilter} from "../../models/Filter/StatusFilter";
-import {MediaType} from "../../generated/graphql";
+import {MediaListStatus, MediaType} from "../../../generated/graphql";
 
 @Component({
   selector: 'app-game-settings',
@@ -14,13 +13,13 @@ export class GameSettingsComponent implements OnInit {
 
   @Output() filterEmitter = new EventEmitter<SettingsFilter>()
 
-  selectedIndex : MediaType[] = [MediaType.Anime, MediaType.Manga]
+  mediaTypes : MediaType[] = [MediaType.Anime, MediaType.Manga]
 
   public currentIndex = 0;
 
   userNameInput = '';
 
-  settingsFilter: SettingsFilter = {type: this.selectedIndex[this.currentIndex]}
+  settingsFilter: SettingsFilter = {name: this.userNameInput, type: this.mediaTypes[this.currentIndex]}
 
   $reset = new Subject<void>()
   step = 0;
@@ -56,7 +55,7 @@ export class GameSettingsComponent implements OnInit {
     this.settingsFilter.genres = $event
   }
 
-  onStatusFilterChange($event: StatusFilter[] | undefined) {
+  onStatusFilterChange($event: MediaListStatus[]) {
     this.settingsFilter.status = $event
   }
 
@@ -70,6 +69,10 @@ export class GameSettingsComponent implements OnInit {
 
   start() {
     this.filterEmitter.emit(this.settingsFilter)
+  }
+
+  onTypeChange() {
+    this.settingsFilter.type = this.mediaTypes[this.currentIndex]
   }
 }
 
