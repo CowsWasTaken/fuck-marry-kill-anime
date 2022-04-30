@@ -13,13 +13,13 @@ export class GameSettingsComponent implements OnInit {
 
   @Output() filterEmitter = new EventEmitter<SettingsFilter>()
 
-  selectedIndex : MediaType[] = [MediaType.Anime, MediaType.Manga]
+  mediaTypes : MediaType[] = [MediaType.Anime, MediaType.Manga]
 
   public currentIndex = 0;
 
   userNameInput = '';
 
-  settingsFilter: SettingsFilter = {name: this.userNameInput, type: this.selectedIndex[this.currentIndex]}
+  settingsFilter: SettingsFilter = {name: this.userNameInput, type: this.mediaTypes[this.currentIndex]}
 
   $reset = new Subject<void>()
   step = 0;
@@ -71,10 +71,8 @@ export class GameSettingsComponent implements OnInit {
     this.filterEmitter.emit(this.settingsFilter)
   }
 
-  onTypeChange($event: MediaType) {
-    console.log($event);
-    
-    this.settingsFilter.type = $event
+  onTypeChange() {
+    this.settingsFilter.type = this.mediaTypes[this.currentIndex]
   }
 }
 

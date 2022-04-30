@@ -11,6 +11,8 @@ import {MediaListStatus} from "../../../generated/graphql";
 })
 export class StatusSelectionComponent implements OnInit, FilterComponent {
 
+  // TODO fix checkbox not updating ui in frontedn when reset event triggers
+
   @Input() resetEvent?: Observable<void>
 
   @Output() statusEmitter = new EventEmitter<MediaListStatus[]>()
@@ -19,10 +21,10 @@ export class StatusSelectionComponent implements OnInit, FilterComponent {
 
   defaultList = [
     { status: MediaListStatus.Completed, checked: true },
-    { status: MediaListStatus.Current, checked: true },
+    { status: MediaListStatus.Current, checked: false },
     { status: MediaListStatus.Paused, checked: false },
     { status: MediaListStatus.Planning, checked: false },
-    { status: MediaListStatus.Repeating, checked: false },
+    { status: MediaListStatus.Repeating, checked: true },
     { status: MediaListStatus.Dropped, checked: false },
   ]
   allComplete = true

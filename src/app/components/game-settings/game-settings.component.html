@@ -1,6 +1,6 @@
-<mat-tab-group [(selectedIndex)]="currentIndex" animationDuration=0ms mat-align-tabs="center">
-  <ng-container *ngFor="let media of selectedIndex, let i = index">
-    <mat-tab (click)="currentIndex=i; onTypeChange(media)" [label]="media">
+<mat-tab-group (selectedTabChange)="onTypeChange()" [(selectedIndex)]="currentIndex" animationDuration=0ms mat-align-tabs="center">
+  <ng-container *ngFor="let media of mediaTypes, let i = index">
+    <mat-tab [label]="media">
       <ng-container *ngTemplateOutlet="tabContent"></ng-container>
     </mat-tab>
   </ng-container>
