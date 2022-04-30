@@ -11,6 +11,7 @@ export class PickingService {
 
   takenPicks = new BehaviorSubject<PickTaken[]>([])
 
+  submittedPicks: PickTaken[][] = []
 
   constructor() {
   }
@@ -70,4 +71,9 @@ export class PickingService {
     const matchingPickTypeIndex = list.findIndex(element => element.pick === pick) // index for the same PickOption Type
     PickingService.removeIndexFromList(matchingPickTypeIndex, list)
   }
-}
+
+  submitPicks() {
+    this.submittedPicks.push(this.takenPicks.getValue())
+    this.takenPicks.next([])
+  }
+ }
