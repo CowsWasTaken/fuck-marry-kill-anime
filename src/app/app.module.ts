@@ -30,6 +30,8 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatCardModule} from "@angular/material/card";
 import { FuzzyDatePipe } from './pipes/fuzzy-date.pipe';
 import { CharacterDescriptionCardComponent } from './components/character-description-card/character-description-card.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { CharacterComponent } from './components/character/character.component';
 
 @NgModule({
   declarations: [
@@ -41,31 +43,33 @@ import { CharacterDescriptionCardComponent } from './components/character-descri
     YearSelectionComponent,
     StatusSelectionComponent,
     FuzzyDatePipe,
-    CharacterDescriptionCardComponent
+    CharacterDescriptionCardComponent,
+    CharacterComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    HttpClientModule,
-    GraphQLModule,
-    MatExpansionModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatButtonToggleModule,
-    MatSliderModule,
-    MatTooltipModule,
-    MatListModule,
-    MatCheckboxModule,
-    MatTabsModule,
-    MatCardModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        HttpClientModule,
+        GraphQLModule,
+        MatExpansionModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatButtonToggleModule,
+        MatSliderModule,
+        MatTooltipModule,
+        MatListModule,
+        MatCheckboxModule,
+        MatTabsModule,
+        MatCardModule,
+        MatProgressSpinnerModule,
+    ],
   providers: [AniListHttpClientService],
   bootstrap: [AppComponent]
 })
