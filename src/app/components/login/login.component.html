@@ -1,4 +1,4 @@
-<button color="primary" mat-stroked-button>
+<button [disabled]="isClientValid()" color="primary" mat-stroked-button>
   <a
     href="https://anilist.co/api/v2/oauth/authorize?client_id={{
       client_id
