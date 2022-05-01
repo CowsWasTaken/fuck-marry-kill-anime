@@ -1,7 +1,5 @@
-<app-login></app-login>
-<button (click)="getUserAndType('appleJackFanAcc', MediaType.Manga)" color="accent" mat-stroked-button>Do Something
-</button>
 <div class="m-20">
+  <app-login class="flex justify-center mb-10"></app-login>
 
   <div *ngIf="characters" class="mb-20">
     <app-character [characters]="characters"></app-character>
