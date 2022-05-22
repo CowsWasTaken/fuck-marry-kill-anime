@@ -4671,7 +4671,9 @@ export type UserPartsFragment = { __typename?: 'User', id: number, name: string,
 
 export type CharacterPartsFragment = { __typename?: 'Character', id: number, siteUrl?: string | null, favourites?: number | null, gender?: string | null, bloodType?: string | null, age?: string | null, name?: { __typename?: 'CharacterName', full?: string | null, userPreferred?: string | null, native?: string | null } | null, image?: { __typename?: 'CharacterImage', large?: string | null } | null, dateOfBirth?: { __typename?: 'FuzzyDate', day?: number | null, month?: number | null } | null };
 
-export type MediaListCollectionPartsFragment = { __typename?: 'MediaListCollection', lists?: Array<{ __typename?: 'MediaListGroup', name?: string | null, status?: MediaListStatus | null, entries?: Array<{ __typename?: 'MediaList', id: number, media?: { __typename?: 'Media', siteUrl?: string | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', userPreferred?: string | null } | null, characters?: { __typename?: 'CharacterConnection', nodes?: Array<{ __typename?: 'Character', id: number, siteUrl?: string | null, favourites?: number | null, gender?: string | null, bloodType?: string | null, age?: string | null, name?: { __typename?: 'CharacterName', full?: string | null, userPreferred?: string | null, native?: string | null } | null, image?: { __typename?: 'CharacterImage', large?: string | null } | null, dateOfBirth?: { __typename?: 'FuzzyDate', day?: number | null, month?: number | null } | null } | null> | null } | null } | null } | null> | null } | null> | null, user?: { __typename?: 'User', id: number, name: string, avatar?: { __typename?: 'UserAvatar', large?: string | null } | null } | null };
+export type MediaPartsFragment = { __typename?: 'Media', siteUrl?: string | null, genres?: Array<string | null> | null, seasonYear?: number | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', userPreferred?: string | null } | null, characters?: { __typename?: 'CharacterConnection', nodes?: Array<{ __typename?: 'Character', id: number, siteUrl?: string | null, favourites?: number | null, gender?: string | null, bloodType?: string | null, age?: string | null, name?: { __typename?: 'CharacterName', full?: string | null, userPreferred?: string | null, native?: string | null } | null, image?: { __typename?: 'CharacterImage', large?: string | null } | null, dateOfBirth?: { __typename?: 'FuzzyDate', day?: number | null, month?: number | null } | null } | null> | null } | null };
+
+export type MediaListCollectionPartsFragment = { __typename?: 'MediaListCollection', lists?: Array<{ __typename?: 'MediaListGroup', name?: string | null, status?: MediaListStatus | null, entries?: Array<{ __typename?: 'MediaList', id: number, media?: { __typename?: 'Media', siteUrl?: string | null, genres?: Array<string | null> | null, seasonYear?: number | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', userPreferred?: string | null } | null, characters?: { __typename?: 'CharacterConnection', nodes?: Array<{ __typename?: 'Character', id: number, siteUrl?: string | null, favourites?: number | null, gender?: string | null, bloodType?: string | null, age?: string | null, name?: { __typename?: 'CharacterName', full?: string | null, userPreferred?: string | null, native?: string | null } | null, image?: { __typename?: 'CharacterImage', large?: string | null } | null, dateOfBirth?: { __typename?: 'FuzzyDate', day?: number | null, month?: number | null } | null } | null> | null } | null } | null } | null> | null } | null> | null, user?: { __typename?: 'User', id: number, name: string, avatar?: { __typename?: 'UserAvatar', large?: string | null } | null } | null };
 
 export const CharacterPartsFragmentDoc = gql`
     fragment CharacterParts on Character {
@@ -4695,6 +4697,24 @@ export const CharacterPartsFragmentDoc = gql`
   age
 }
     `;
+export const MediaPartsFragmentDoc = gql`
+    fragment MediaParts on Media {
+  coverImage {
+    large
+  }
+  siteUrl
+  title {
+    userPreferred
+  }
+  genres
+  characters(role: $role) {
+    nodes {
+      ...CharacterParts
+    }
+  }
+  seasonYear
+}
+    ${CharacterPartsFragmentDoc}`;
 export const UserPartsFragmentDoc = gql`
     fragment UserParts on User {
   id
@@ -4712,18 +4732,7 @@ export const MediaListCollectionPartsFragmentDoc = gql`
     entries {
       id
       media {
-        coverImage {
-          large
-        }
-        siteUrl
-        title {
-          userPreferred
-        }
-        characters(role: $role) {
-          nodes {
-            ...CharacterParts
-          }
-        }
+        ...MediaParts
       }
     }
   }
@@ -4731,7 +4740,7 @@ export const MediaListCollectionPartsFragmentDoc = gql`
     ...UserParts
   }
 }
-    ${CharacterPartsFragmentDoc}
+    ${MediaPartsFragmentDoc}
 ${UserPartsFragmentDoc}`;
 export const CharacterParts = gql`
     fragment CharacterParts on Character {
@@ -4755,6 +4764,24 @@ export const CharacterParts = gql`
   age
 }
     `;
+export const MediaParts = gql`
+    fragment MediaParts on Media {
+  coverImage {
+    large
+  }
+  siteUrl
+  title {
+    userPreferred
+  }
+  genres
+  characters(role: $role) {
+    nodes {
+      ...CharacterParts
+    }
+  }
+  seasonYear
+}
+    ${CharacterParts}`;
 export const UserParts = gql`
     fragment UserParts on User {
   id
@@ -4772,18 +4799,7 @@ export const MediaListCollectionParts = gql`
     entries {
       id
       media {
-        coverImage {
-          large
-        }
-        siteUrl
-        title {
-          userPreferred
-        }
-        characters(role: $role) {
-          nodes {
-            ...CharacterParts
-          }
-        }
+        ...MediaParts
       }
     }
   }
@@ -4791,5 +4807,5 @@ export const MediaListCollectionParts = gql`
     ...UserParts
   }
 }
-    ${CharacterParts}
+    ${MediaParts}
 ${UserParts}`;
