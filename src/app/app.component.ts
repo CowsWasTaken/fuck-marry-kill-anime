@@ -45,4 +45,8 @@ export class AppComponent {
     }
     this.getUserAndType(name, type, CharacterRole.Main, status)
   }
+
+  likeCharacter(number: number) {
+    this.anilist.toggleFavourite(number).subscribe(({data}) => console.log(data))
+  }
 }
