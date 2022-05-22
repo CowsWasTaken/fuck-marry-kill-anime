@@ -20,10 +20,10 @@ export class DataExtractService {
         continue
       }
       for (let entry of list!.entries!) {
-        if (entry!.media! === undefined) {
+        if (entry!.media === undefined) {
           continue
         }
-        if (entry!.media!.characters  === undefined) {
+        if (entry!.media!.characters === undefined) {
           continue
         }
         if (entry!.media!.characters!.nodes === undefined) {
@@ -38,7 +38,7 @@ export class DataExtractService {
   }
 
   shuffle(array: any[]) {
-    let currentIndex = array.length,  randomIndex;
+    let currentIndex = array.length, randomIndex;
 
     // While there remain elements to shuffle.
     while (currentIndex != 0) {
