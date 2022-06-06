@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CharacterPartsFragment, MediaListCollectionPartsFragment} from "../../generated/graphql";
+import {CharacterPartsFragment, MediaListCollectionPartsFragment, MediaPartsFragment} from "../../generated/graphql";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class DataExtractService {
   }
 
 
-  extractCharacters(mediaListCollection: MediaListCollectionPartsFragment) {
+  extractCharacters(mediaListCollection: MediaListCollectionPartsFragment) : CharacterPartsFragment[] {
     let characters: CharacterPartsFragment[] = []
     if (mediaListCollection.lists === undefined) {
       return []
@@ -20,20 +20,29 @@ export class DataExtractService {
         continue
       }
       for (let entry of list!.entries!) {
-        if (entry!.media === undefined) {
-          continue
-        }
-        if (entry!.media!.characters === undefined) {
-          continue
-        }
-        if (entry!.media!.characters!.nodes === undefined) {
-          continue
-        }
-        for (let character of entry!.media!.characters!.nodes!) {
-          characters.push(character as any as CharacterPartsFragment)
-        }
+        const charactersFromMedia = this.extractCharactersForMedia(entry!.media!)
+        characters.push(...charactersFromMedia)
       }
     }
+    return characters
+  }
+
+  extractCharactersForMedia (media: MediaPartsFragment):CharacterPartsFragment[]  {
+    let characters: CharacterPartsFragment[] = []
+    if (media === undefined || media.characters === undefined || media.characters!.nodes === undefined) {
+      return []
+    }
+    for (let character of media.characters!.nodes!) {
+      characters.push(character as any as CharacterPartsFragment)
+    }
+    return characters
+  }
+
+  extractCharactersForMediaList(mediaList: MediaPartsFragment[]) {
+    let characters: CharacterPartsFragment[] = []
+    mediaList.forEach(media => {
+      characters.push(...this.extractCharactersForMedia(media))
+    })
     return characters
   }
 

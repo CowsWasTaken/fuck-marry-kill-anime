@@ -1,15 +1,15 @@
 import {Component} from '@angular/core';
 import {AniListHttpClientService} from './services/ani-list-http-client.service';
-import {MockCharacterList} from "./mock/MockCharacterList";
 import {SettingsFilter} from "./models/Filter/SettingsFilter";
 import {
   CharacterPartsFragment,
   CharacterRole,
   MediaListCollectionPartsFragment,
-  MediaListStatus,
+  MediaListStatus, MediaPartsFragment,
   MediaType
 } from "../generated/graphql";
 import {DataExtractService} from "./services/data-extract.service";
+import {FilterService} from "./services/filter.service";
 
 @Component({
   selector: 'app-root', templateUrl: './app.component.html', styleUrls: ['./app.component.sass'],
@@ -21,29 +21,32 @@ export class AppComponent {
 
   MediaType = MediaType
 
-  constructor(private anilist: AniListHttpClientService, private dataExtractor: DataExtractService) {
+  constructor(private anilist: AniListHttpClientService, private dataExtractor: DataExtractService, private filterService: FilterService) {
   }
 
   ngOnInit() {
   }
 
-  getUserAndType(name: string, type: MediaType, role?: CharacterRole, status_in? : MediaListStatus[]) {
-    this.anilist.getUserAndType(name, type, role, status_in).subscribe(({data}) => {
-      this.result = data.MediaListCollection
-      console.log(data)
-      const characters = this.dataExtractor.extractCharacters(data.MediaListCollection)
-      this.characters = this.dataExtractor.shuffle(characters)
+  getUserAndType(settingsFilter: SettingsFilter, role?: CharacterRole) {
+    let {name, type, status} = settingsFilter
+
+    this.anilist.getUserAndType(name, type, role, status).subscribe(({data, error}) => {
+      this.filterAndExtractData(data.MediaListCollection, settingsFilter)
     })
   }
 
-  onFilterChange(settingsFilter: SettingsFilter) {
-    let {name, type, status} = settingsFilter
-    console.log(settingsFilter);
+  filterAndExtractData (mediaListCollection : MediaListCollectionPartsFragment, settingsFilter: SettingsFilter,) {
+    const mediaList: MediaPartsFragment[] = this.filterService.filterForSettingsFilter(mediaListCollection, settingsFilter)
+    const characters = this.dataExtractor.extractCharactersForMediaList(mediaList)
+    this.characters = this.dataExtractor.shuffle(characters)
+  }
 
-    if (name === undefined) {
+  onStartToggleChange(settingsFilter: SettingsFilter) {
+    console.log(settingsFilter);
+    if (settingsFilter.name === undefined) {
       throw Error('Cannot search for Username undefined')
     }
-    this.getUserAndType(name, type, CharacterRole.Main, status)
+    this.getUserAndType(settingsFilter, CharacterRole.Main)
   }
 
   likeCharacter(number: number) {
