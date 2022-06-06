@@ -9,7 +9,7 @@ import {MediaListStatus, MediaType} from "../../../generated/graphql";
   templateUrl: './game-settings.component.html',
   styleUrls: ['./game-settings.component.css']
 })
-export class GameSettingsComponent implements OnInit {
+export class GameSettingsComponent {
 
   @Output() filterEmitter = new EventEmitter<SettingsFilter>()
 
@@ -23,12 +23,6 @@ export class GameSettingsComponent implements OnInit {
 
   $reset = new Subject<void>()
   step = 0;
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
 
   setStep(index: number) {
     this.step = index;

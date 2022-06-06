@@ -4673,6 +4673,8 @@ export type CharacterPartsFragment = { __typename?: 'Character', id: number, sit
 
 export type MediaPartsFragment = { __typename?: 'Media', siteUrl?: string | null, genres?: Array<string | null> | null, seasonYear?: number | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', userPreferred?: string | null } | null, characters?: { __typename?: 'CharacterConnection', nodes?: Array<{ __typename?: 'Character', id: number, siteUrl?: string | null, favourites?: number | null, gender?: string | null, bloodType?: string | null, age?: string | null, name?: { __typename?: 'CharacterName', full?: string | null, userPreferred?: string | null, native?: string | null } | null, image?: { __typename?: 'CharacterImage', large?: string | null } | null, dateOfBirth?: { __typename?: 'FuzzyDate', day?: number | null, month?: number | null } | null } | null> | null } | null };
 
+export type MediaListPartsFragment = { __typename?: 'MediaList', id: number, media?: { __typename?: 'Media', siteUrl?: string | null, genres?: Array<string | null> | null, seasonYear?: number | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', userPreferred?: string | null } | null, characters?: { __typename?: 'CharacterConnection', nodes?: Array<{ __typename?: 'Character', id: number, siteUrl?: string | null, favourites?: number | null, gender?: string | null, bloodType?: string | null, age?: string | null, name?: { __typename?: 'CharacterName', full?: string | null, userPreferred?: string | null, native?: string | null } | null, image?: { __typename?: 'CharacterImage', large?: string | null } | null, dateOfBirth?: { __typename?: 'FuzzyDate', day?: number | null, month?: number | null } | null } | null> | null } | null } | null };
+
 export type MediaListCollectionPartsFragment = { __typename?: 'MediaListCollection', lists?: Array<{ __typename?: 'MediaListGroup', name?: string | null, status?: MediaListStatus | null, entries?: Array<{ __typename?: 'MediaList', id: number, media?: { __typename?: 'Media', siteUrl?: string | null, genres?: Array<string | null> | null, seasonYear?: number | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', userPreferred?: string | null } | null, characters?: { __typename?: 'CharacterConnection', nodes?: Array<{ __typename?: 'Character', id: number, siteUrl?: string | null, favourites?: number | null, gender?: string | null, bloodType?: string | null, age?: string | null, name?: { __typename?: 'CharacterName', full?: string | null, userPreferred?: string | null, native?: string | null } | null, image?: { __typename?: 'CharacterImage', large?: string | null } | null, dateOfBirth?: { __typename?: 'FuzzyDate', day?: number | null, month?: number | null } | null } | null> | null } | null } | null } | null> | null } | null> | null, user?: { __typename?: 'User', id: number, name: string, avatar?: { __typename?: 'UserAvatar', large?: string | null } | null } | null };
 
 export const CharacterPartsFragmentDoc = gql`
@@ -4715,6 +4717,14 @@ export const MediaPartsFragmentDoc = gql`
   seasonYear
 }
     ${CharacterPartsFragmentDoc}`;
+export const MediaListPartsFragmentDoc = gql`
+    fragment MediaListParts on MediaList {
+  id
+  media {
+    ...MediaParts
+  }
+}
+    ${MediaPartsFragmentDoc}`;
 export const UserPartsFragmentDoc = gql`
     fragment UserParts on User {
   id
@@ -4730,17 +4740,14 @@ export const MediaListCollectionPartsFragmentDoc = gql`
     name
     status
     entries {
-      id
-      media {
-        ...MediaParts
-      }
+      ...MediaListParts
     }
   }
   user {
     ...UserParts
   }
 }
-    ${MediaPartsFragmentDoc}
+    ${MediaListPartsFragmentDoc}
 ${UserPartsFragmentDoc}`;
 export const CharacterParts = gql`
     fragment CharacterParts on Character {
@@ -4782,6 +4789,14 @@ export const MediaParts = gql`
   seasonYear
 }
     ${CharacterParts}`;
+export const MediaListParts = gql`
+    fragment MediaListParts on MediaList {
+  id
+  media {
+    ...MediaParts
+  }
+}
+    ${MediaParts}`;
 export const UserParts = gql`
     fragment UserParts on User {
   id
@@ -4797,15 +4812,12 @@ export const MediaListCollectionParts = gql`
     name
     status
     entries {
-      id
-      media {
-        ...MediaParts
-      }
+      ...MediaListParts
     }
   }
   user {
     ...UserParts
   }
 }
-    ${MediaParts}
+    ${MediaListParts}
 ${UserParts}`;

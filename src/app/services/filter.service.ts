@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
-import {MediaListCollectionPartsFragment, MediaPartsFragment} from "../../generated/graphql";
+import {Injectable} from '@angular/core';
+import {
+  MediaListCollectionPartsFragment, MediaPartsFragment
+} from "../../generated/graphql";
 import {YearFilter} from "../models/Filter/YearFilter";
 import {YearFilterType} from "../models/Filter/YearFilterType";
 import {SettingsFilter} from "../models/Filter/SettingsFilter";
@@ -9,33 +11,37 @@ import {SettingsFilter} from "../models/Filter/SettingsFilter";
 })
 export class FilterService {
 
-  constructor() { }
-
-  filterForSettingsFilter(mediaListCollection: MediaListCollectionPartsFragment, settingsFilter: SettingsFilter) {
+  filterForSettingsFilter(mediaListCollection: MediaListCollectionPartsFragment, settingsFilter: SettingsFilter): MediaPartsFragment[] {
+    const filteredMedia: MediaPartsFragment[] = []
+    console.log(settingsFilter)
     const {genres, yearPreference} = settingsFilter
-    let arr : MediaListCollectionPartsFragment[] = []
     for (let list of mediaListCollection.lists!) {
-      for ( let entry of list!.entries!) {
-        // TODO
+      for (let entry of list!.entries!) {
+        const media = entry!.media!
+        if (genres !== undefined) {
+          if (!this.isMediaValidForGenres(media, genres)) {
+            continue
+          }
+        }
+        if (yearPreference !== undefined) {
+          if (!this.isMediaValidForYear(media, yearPreference)) {
+            continue
+          }
+        }
+        filteredMedia.push(media)
       }
     }
+    return filteredMedia
   }
 
-  filterYear(mediaListCollection: MediaListCollectionPartsFragment, yearFilter: YearFilter) {
-    return mediaListCollection.lists!.filter(list => list?.entries!.filter(entry => this.isMediaValidForYear(entry?.media!, yearFilter)))
-  }
-
-  filterGenres(mediaListCollection: MediaListCollectionPartsFragment, genres: string[]) {
-    return mediaListCollection.lists!.filter(list => list?.entries!.filter(entry => this.isMediaValidForGenres(entry?.media!, genres)))
-  }
 
   isMediaValidForGenres(media: MediaPartsFragment, genres: string[]) {
-    for (const genre of media.genres!) {
-      if (!genres.includes(genre!)) {
-        return false
+    for (const genre of genres) {
+      if (media!.genres!.indexOf(genre) > -1) {
+        return true
       }
     }
-    return true
+    return false
   }
 
   isMediaValidForYear(media: MediaPartsFragment, yearFilter: YearFilter) {

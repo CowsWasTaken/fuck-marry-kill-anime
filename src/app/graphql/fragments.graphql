@@ -44,15 +44,19 @@ fragment MediaParts on Media {
   seasonYear
 }
 
+fragment MediaListParts on MediaList {
+  id
+  media {
+    ...MediaParts
+  }
+}
+
 fragment MediaListCollectionParts on MediaListCollection {
   lists {
     name
     status
     entries {
-      id
-      media {
-        ...MediaParts
-      }
+      ...MediaListParts
     }
   }
   user {
