@@ -33,6 +33,7 @@ import { CharacterDescriptionCardComponent } from './components/character-descri
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { CharacterComponent } from './components/character/character.component';
 import { NameSelectionComponent } from './components/name-selection/name-selection.component';
+import {NgxEnvModule} from "@ngx-env/core";
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { NameSelectionComponent } from './components/name-selection/name-selecti
         MatTabsModule,
         MatCardModule,
         MatProgressSpinnerModule,
+      NgxEnvModule
     ],
   providers: [AniListHttpClientService],
   bootstrap: [AppComponent]
