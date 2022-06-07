@@ -1,0 +1,7 @@
+<mat-form-field appearance="fill" class="w-full">
+  <mat-label>Name</mat-label>
+  <input (ngModelChange)="emitChange()" [(ngModel)]="userName" matInput>
+  <button (click)="userName=''" *ngIf="userName" aria-label="Clear" mat-icon-button matSuffix>
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>

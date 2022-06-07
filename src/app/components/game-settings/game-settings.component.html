@@ -1,4 +1,4 @@
-<mat-tab-group (selectedTabChange)="onTypeChange()" [(selectedIndex)]="currentIndex" animationDuration=0ms mat-align-tabs="center">
+<mat-tab-group style='min-height:300px' (selectedTabChange)="onTypeChange()" [(selectedIndex)]="currentTabIndex" animationDuration=0ms mat-align-tabs="center">
   <ng-container *ngFor="let media of mediaTypes, let i = index">
     <mat-tab [label]="media">
       <ng-container *ngTemplateOutlet="tabContent"></ng-container>
@@ -21,13 +21,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <mat-form-field appearance="fill" class="w-full">
-        <mat-label>Name</mat-label>
-        <input (ngModelChange)="onNameFilterChange($event)" [(ngModel)]="userNameInput" matInput>
-        <button (click)="userNameInput=''" *ngIf="userNameInput" aria-label="Clear" mat-icon-button matSuffix>
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
+      <app-name-selection [resetEvent]="$reset.asObservable()" (nameEmitter)="onNameFilterChange($event)"></app-name-selection>
       <mat-action-row>
         <button (click)="nextStep()" color="primary" mat-button>Next</button>
       </mat-action-row>

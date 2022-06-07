@@ -1,5 +1,6 @@
 import {gql} from 'apollo-angular';
 import {
+  AniChartUserParts, AniChartUserPartsFragment,
   Character,
   CharacterParts,
   CharacterPartsFragment,
@@ -37,4 +38,13 @@ export const TOGGLE_FAVOURITE = gql<{ Character: CharacterPartsFragment }, { ani
       }
     }
   }`
+
+export const GET_USER_WITH_FAVOURITES = gql<{ AniChartUser: AniChartUserPartsFragment }, {}>`
+${AniChartUserParts}
+query User {
+  AniChartUser {
+    ...AniChartUserParts
+  }
+}
+`
 

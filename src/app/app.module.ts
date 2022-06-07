@@ -32,6 +32,7 @@ import { FuzzyDatePipe } from './pipes/fuzzy-date.pipe';
 import { CharacterDescriptionCardComponent } from './components/character-description-card/character-description-card.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { CharacterComponent } from './components/character/character.component';
+import { NameSelectionComponent } from './components/name-selection/name-selection.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CharacterComponent } from './components/character/character.component';
     StatusSelectionComponent,
     FuzzyDatePipe,
     CharacterDescriptionCardComponent,
-    CharacterComponent
+    CharacterComponent,
+    NameSelectionComponent
   ],
     imports: [
         BrowserModule,

@@ -15,11 +15,11 @@ export class GameSettingsComponent {
 
   mediaTypes : MediaType[] = [MediaType.Anime, MediaType.Manga]
 
-  public currentIndex = 0;
+  userNameInput : string = ''
 
-  userNameInput = '';
+  public currentTabIndex = 0;
 
-  settingsFilter: SettingsFilter = {name: this.userNameInput, type: this.mediaTypes[this.currentIndex]}
+  settingsFilter: SettingsFilter = {name: this.userNameInput, type: this.mediaTypes[this.currentTabIndex]}
 
   $reset = new Subject<void>()
   step = 0;
@@ -42,7 +42,6 @@ export class GameSettingsComponent {
 
   reset() {
     this.$reset.next()
-    this.userNameInput = ''
   }
 
   onGenreFilterChange($event: string[] | undefined) {
@@ -66,7 +65,7 @@ export class GameSettingsComponent {
   }
 
   onTypeChange() {
-    this.settingsFilter.type = this.mediaTypes[this.currentIndex]
+    this.settingsFilter.type = this.mediaTypes[this.currentTabIndex]
   }
 }
 

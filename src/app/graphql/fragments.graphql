@@ -63,3 +63,17 @@ fragment MediaListCollectionParts on MediaListCollection {
     ...UserParts
   }
 }
+
+fragment AniChartUserParts on AniChartUser {
+  user {
+    id
+    name
+    favourites {
+      characters {
+        nodes {
+           id
+        }
+      }
+    }
+  }
+}
