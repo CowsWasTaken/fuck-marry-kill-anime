@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  isClientValid(): boolean {
+  isClientInValid(): boolean {
     return this.client_id === 0 || this.client_id === undefined;
   }
 }
