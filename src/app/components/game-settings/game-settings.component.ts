@@ -58,6 +58,7 @@ export class GameSettingsComponent {
 
   onNameFilterChange($event: string) {
     this.settingsFilter.name = $event
+    this.userNameInput = $event
   }
 
   start() {

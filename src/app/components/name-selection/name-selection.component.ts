@@ -15,7 +15,16 @@ export class NameSelectionComponent implements OnInit {
   @Output()
   nameEmitter= new EventEmitter<string>()
 
-  userName: string = ''
+   private _userName: string = ''
+
+  get userName(): string {
+    return this._userName
+  }
+
+  set userName(value: string) {
+    this._userName = value
+    this.emitChange()
+  }
   id: number
 
   constructor(private authService: AuthService, private anilist: AniListHttpClientService) {
