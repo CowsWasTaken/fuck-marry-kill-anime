@@ -26,7 +26,7 @@ export class DataExtractService {
       }
       for (let entry of list!.entries!) {
         const charactersFromMedia = this.extractCharactersForMedia(entry!.media!)
-        characters.push(...charactersFromMedia)
+        characters = this.mergeCharacterLists(characters, charactersFromMedia)
       }
     }
     return characters
@@ -46,9 +46,25 @@ export class DataExtractService {
   extractCharactersForMediaList(mediaList: MediaPartsFragment[]) {
     let characters: CharacterPartsFragment[] = []
     mediaList.forEach(media => {
-      characters.push(...this.extractCharactersForMedia(media))
+      const charactersFromMedia = this.extractCharactersForMedia(media)
+      this.mergeCharacterLists(characters, charactersFromMedia)
     })
     return characters
+  }
+
+  /**
+   * anime/mange contain the same characters in different seasons. To not have duplicate entries the id's of the
+   * characters get compared and added if missing
+   * @param listOne
+   * @param listTwo
+   */
+  mergeCharacterLists(listOne: CharacterPartsFragment[], listTwo: CharacterPartsFragment[]): CharacterPartsFragment[] {
+    for (const characterPartsFragment of listTwo) {
+      if (!listOne.find(existingCharacter => existingCharacter.id === characterPartsFragment.id)) {
+        listOne.push(characterPartsFragment)
+      }
+    }
+    return listOne
   }
 
   shuffle(array: any[]) {
