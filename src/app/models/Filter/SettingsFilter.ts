@@ -8,5 +8,5 @@ export interface SettingsFilter {
   yearPreference?: YearFilter,
   genres?: string[],
   status?: MediaListStatus[],
-  gender?: GenderType
+  genderFilter?: GenderType
 }

@@ -71,7 +71,7 @@ export class GameSettingsComponent {
   }
 
   onGenderFilterChange($event: GenderType) {
-    this.settingsFilter.gender = $event
+    this.settingsFilter.genderFilter = $event
   }
 }
 

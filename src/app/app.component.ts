@@ -10,6 +10,7 @@ import {
 } from "../generated/graphql";
 import {DataExtractService} from "./services/data-extract.service";
 import {FilterService} from "./services/filter.service";
+import {GenderType} from "./components/gender-selection/models/GenderType";
 
 @Component({
   selector: 'app-root', templateUrl: './app.component.html', styleUrls: ['./app.component.sass'],
@@ -38,7 +39,8 @@ export class AppComponent {
 
   filterAndExtractData (mediaListCollection : MediaListCollectionPartsFragment, settingsFilter: SettingsFilter,) {
     const mediaList: MediaPartsFragment[] = this.filterService.filterForSettingsFilter(mediaListCollection, settingsFilter)
-    const characters = this.dataExtractor.extractCharactersForMediaList(mediaList)
+    let characters = this.dataExtractor.extractCharactersForMediaList(mediaList)
+    characters = this.filterService.filterCharacters(characters, settingsFilter)
     this.characters = this.dataExtractor.shuffle(characters)
   }
 
