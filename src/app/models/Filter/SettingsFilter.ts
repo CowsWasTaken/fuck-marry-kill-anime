@@ -1,6 +1,6 @@
 import {YearFilter} from "./YearFilter";
-import {StatusFilter} from "./StatusFilter";
 import {MediaListStatus, MediaType} from "../../../generated/graphql";
+import {GenderType} from "../../components/gender-selection/models/GenderType";
 
 export interface SettingsFilter {
   name: string,
@@ -8,4 +8,5 @@ export interface SettingsFilter {
   yearPreference?: YearFilter,
   genres?: string[],
   status?: MediaListStatus[],
+  genderFilter?: GenderType
 }

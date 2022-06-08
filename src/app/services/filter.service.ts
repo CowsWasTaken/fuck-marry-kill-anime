@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
 import {
+  CharacterPartsFragment,
   MediaListCollectionPartsFragment, MediaPartsFragment
 } from "../../generated/graphql";
 import {YearFilter} from "../models/Filter/YearFilter";
 import {YearFilterType} from "../models/Filter/YearFilterType";
 import {SettingsFilter} from "../models/Filter/SettingsFilter";
+import {GenderType} from "../components/gender-selection/models/GenderType";
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +70,19 @@ export class FilterService {
       return false
     }
     return true;
+  }
+
+  isCharacterValidForGender(character:  CharacterPartsFragment,genderType: GenderType) {
+    return character.gender === genderType
+  }
+
+
+  filterCharacters(characters: CharacterPartsFragment[], settingsFilter: SettingsFilter) {
+    const {genderFilter} = settingsFilter
+    if (genderFilter) {
+      characters = characters.filter(character => this.isCharacterValidForGender(character, genderFilter))
+    }
+    return characters
   }
 
 

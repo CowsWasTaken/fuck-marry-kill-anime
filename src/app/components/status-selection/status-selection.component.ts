@@ -10,10 +10,8 @@ import {MediaListStatus} from "../../../generated/graphql";
   styleUrls: ['./status-selection.component.css']
 })
 export class StatusSelectionComponent implements OnInit, FilterComponent {
-
-  // TODO fix checkbox not updating ui in frontedn when reset event triggers
-
-  @Input() resetEvent?: Observable<void>
+  // TODO reset event currently not supported because value change of checkbox not getting visually updated
+  // @Input() resetEvent?: Observable<void>
 
   @Output() statusEmitter = new EventEmitter<MediaListStatus[]>()
 
@@ -31,9 +29,9 @@ export class StatusSelectionComponent implements OnInit, FilterComponent {
 
   ngOnInit(): void {
     this.setToDefault()
-    this.resetEvent!.subscribe(() => {
-      this.setToDefault()
-    })
+    // this.resetEvent?.subscribe(() => {
+    //   this.setToDefault()
+    // })
   }
 
   setAllTasks(status: boolean) {
@@ -59,16 +57,11 @@ export class StatusSelectionComponent implements OnInit, FilterComponent {
   setToDefault() {
     this.statusList = [...this.defaultList]
     this.checkAllComplete()
-    this.emitEmpty()
+    this.emitChange()
   }
 
   emitChange() {
     const list = StatusSelectionComponent.convertList(this.statusList)
-    this.statusEmitter.emit(list)
-  }
-
-  emitEmpty() {
-    const list = StatusSelectionComponent.convertList(this.defaultList)
     this.statusEmitter.emit(list)
   }
 

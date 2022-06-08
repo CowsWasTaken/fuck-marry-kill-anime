@@ -34,6 +34,10 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { CharacterComponent } from './components/character/character.component';
 import { NameSelectionComponent } from './components/name-selection/name-selection.component';
 import {NgxEnvModule} from "@ngx-env/core";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { GenderSelectionComponent } from './components/gender-selection/gender-selection.component';
+import {GenderInfoDialogComponent} from "./components/gender-selection/gender-info-dialog/gender-info-dialog.component";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -47,33 +51,37 @@ import {NgxEnvModule} from "@ngx-env/core";
     FuzzyDatePipe,
     CharacterDescriptionCardComponent,
     CharacterComponent,
-    NameSelectionComponent
+    NameSelectionComponent,
+    GenderSelectionComponent,
+    GenderInfoDialogComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        HttpClientModule,
-        GraphQLModule,
-        MatExpansionModule,
-        MatIconModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatChipsModule,
-        MatAutocompleteModule,
-        ReactiveFormsModule,
-        FormsModule,
-        MatButtonToggleModule,
-        MatSliderModule,
-        MatTooltipModule,
-        MatListModule,
-        MatCheckboxModule,
-        MatTabsModule,
-        MatCardModule,
-        MatProgressSpinnerModule,
-      NgxEnvModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    HttpClientModule,
+    GraphQLModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatButtonToggleModule,
+    MatSliderModule,
+    MatTooltipModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatTabsModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    NgxEnvModule,
+    MatProgressBarModule,
+    MatDialogModule,
+  ],
   providers: [AniListHttpClientService],
   bootstrap: [AppComponent]
 })
