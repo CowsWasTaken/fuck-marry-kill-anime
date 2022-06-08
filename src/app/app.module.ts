@@ -31,7 +31,7 @@ import {MatCardModule} from "@angular/material/card";
 import { FuzzyDatePipe } from './pipes/fuzzy-date.pipe';
 import { CharacterDescriptionCardComponent } from './components/character-description-card/character-description-card.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import { CharacterComponent } from './components/character/character.component';
+import { GameComponent } from './components/character/game.component';
 import { NameSelectionComponent } from './components/name-selection/name-selection.component';
 import {NgxEnvModule} from "@ngx-env/core";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
@@ -50,7 +50,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     StatusSelectionComponent,
     FuzzyDatePipe,
     CharacterDescriptionCardComponent,
-    CharacterComponent,
+    GameComponent,
     NameSelectionComponent,
     GenderSelectionComponent,
     GenderInfoDialogComponent

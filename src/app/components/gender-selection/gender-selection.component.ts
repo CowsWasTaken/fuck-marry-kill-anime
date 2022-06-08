@@ -29,8 +29,6 @@ export class GenderSelectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.selectedType)
-    // this.setDefaultValue()
     this.resetEvent?.subscribe(() => this.setDefaultValue())
   }
 
