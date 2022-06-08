@@ -3,6 +3,7 @@ import {SettingsFilter} from "../../models/Filter/SettingsFilter";
 import {YearFilter} from "../../models/Filter/YearFilter";
 import {Subject} from "rxjs";
 import {MediaListStatus, MediaType} from "../../../generated/graphql";
+import {GenderType} from "../gender-selection/models/GenderType";
 
 @Component({
   selector: 'app-game-settings',
@@ -65,8 +66,12 @@ export class GameSettingsComponent {
     this.filterEmitter.emit(this.settingsFilter)
   }
 
-  onTypeChange() {
+  onMediaTypeChange() {
     this.settingsFilter.type = this.mediaTypes[this.currentTabIndex]
+  }
+
+  onGenderFilterChange($event: GenderType) {
+    this.settingsFilter.gender = $event
   }
 }
 

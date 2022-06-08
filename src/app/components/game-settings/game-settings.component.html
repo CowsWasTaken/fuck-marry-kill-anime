@@ -1,4 +1,4 @@
-<mat-tab-group style='min-height:300px' (selectedTabChange)="onTypeChange()" [(selectedIndex)]="currentTabIndex" animationDuration=0ms mat-align-tabs="center">
+<mat-tab-group (selectedTabChange)="onMediaTypeChange()" [(selectedIndex)]="currentTabIndex" animationDuration=0ms mat-align-tabs="center">
   <ng-container *ngFor="let media of mediaTypes, let i = index">
     <mat-tab [label]="media">
       <ng-container *ngTemplateOutlet="tabContent"></ng-container>
@@ -79,8 +79,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <app-status-selection (statusEmitter)="onStatusFilterChange($event)"
-                            [resetEvent]="$reset.asObservable()"></app-status-selection>
+      <app-status-selection (statusEmitter)="onStatusFilterChange($event)"></app-status-selection>
 
       <mat-action-row>
         <button (click)="prevStep()" color="warn" mat-button>Previous</button>
@@ -89,11 +88,12 @@
 
   </mat-accordion>
   <mat-card class="mt-4">
-    <div class="flex space-x-11 justify-end">
-
+    <div class="flex justify-between">
+      <app-gender-selection [resetEvent]="$reset.asObservable()" (genderEmitter)="onGenderFilterChange($event)"></app-gender-selection>
+      <div class="flex space-x-11 justify-end">
       <button (click)="reset()" color="warn" mat-stroked-button>Reset</button>
       <button (click)="start()" [disabled]="!isValid()" color="primary" mat-stroked-button>Start</button>
-
+    </div>
     </div>
   </mat-card>
 
