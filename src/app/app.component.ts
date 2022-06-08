@@ -5,7 +5,7 @@ import {
   CharacterPartsFragment,
   CharacterRole,
   MediaListCollectionPartsFragment,
-  MediaListStatus, MediaPartsFragment,
+  MediaPartsFragment,
   MediaType
 } from "../generated/graphql";
 import {DataExtractService} from "./services/data-extract.service";
@@ -18,7 +18,7 @@ export class AppComponent {
   title = 'fuck-marry-kill-anime';
   result: MediaListCollectionPartsFragment | null = null
   characters : CharacterPartsFragment[]
-
+  requestLoading: boolean = false
   MediaType = MediaType
 
   constructor(private anilist: AniListHttpClientService, private dataExtractor: DataExtractService, private filterService: FilterService) {
@@ -28,10 +28,11 @@ export class AppComponent {
   }
 
   getUserAndType(settingsFilter: SettingsFilter, role?: CharacterRole) {
+    this.requestLoading = true
     let {name, type, status} = settingsFilter
-
-    this.anilist.getUserAndType(name, type, role, status).subscribe(({data, error}) => {
+    this.anilist.getUserAndType(name, type, role, status).subscribe(({data, error, loading}) => {
       this.filterAndExtractData(data.MediaListCollection, settingsFilter)
+      this.requestLoading = loading
     })
   }
 
