@@ -10,7 +10,6 @@ import {
 } from "../generated/graphql";
 import {DataExtractService} from "./services/data-extract.service";
 import {FilterService} from "./services/filter.service";
-import {GenderType} from "./components/gender-selection/models/GenderType";
 
 @Component({
   selector: 'app-root', templateUrl: './app.component.html', styleUrls: ['./app.component.sass'],
@@ -21,6 +20,7 @@ export class AppComponent {
   characters : CharacterPartsFragment[]
   requestLoading: boolean = false
   MediaType = MediaType
+  gameAlive: boolean = false  // can be replaced by enum with values, IN_GAME, GAME_END, etc. to interact with components
 
   constructor(private anilist: AniListHttpClientService, private dataExtractor: DataExtractService, private filterService: FilterService) {
   }
@@ -42,10 +42,10 @@ export class AppComponent {
     let characters = this.dataExtractor.extractCharactersForMediaList(mediaList)
     characters = this.filterService.filterCharacters(characters, settingsFilter)
     this.characters = this.dataExtractor.shuffle(characters)
+    this.gameAlive = true
   }
 
   onStartToggleChange(settingsFilter: SettingsFilter) {
-    console.log(settingsFilter);
     if (settingsFilter.name === undefined) {
       throw Error('Cannot search for Username undefined')
     }
@@ -54,5 +54,9 @@ export class AppComponent {
 
   likeCharacter(number: number) {
     this.anilist.toggleFavourite(number).subscribe(({data}) => console.log(data))
+  }
+
+  handleGameOverEvent() {
+    this.gameAlive = false
   }
 }
