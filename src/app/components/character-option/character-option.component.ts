@@ -3,6 +3,7 @@ import {PickOption} from "../../models/Picking/PickOption";
 import {PickTaken} from "../../models/Picking/PickTaken";
 import {PickingService} from "../../services/picking.service";
 import {CharacterPartsFragment} from "../../../generated/graphql";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-character-option',
@@ -10,6 +11,12 @@ import {CharacterPartsFragment} from "../../../generated/graphql";
   styleUrls: ['./character-option.component.css']
 })
 export class CharacterOptionComponent implements OnInit {
+
+  @Input()
+  $isLogin: Observable<boolean>
+
+  @Input()
+  $isLiked: Observable<boolean | undefined>
 
   @Input() character: CharacterPartsFragment
   PickOption = PickOption

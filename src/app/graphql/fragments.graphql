@@ -70,10 +70,14 @@ fragment AniChartUserParts on AniChartUser {
     name
     favourites {
       characters {
-        nodes {
-           id
-        }
+        ...CharacterConnectionParts
       }
     }
+  }
+}
+
+fragment CharacterConnectionParts on CharacterConnection {
+  nodes {
+    id
   }
 }

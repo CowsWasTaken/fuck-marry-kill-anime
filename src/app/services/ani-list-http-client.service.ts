@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Apollo} from 'apollo-angular';
-import {GET_TYPE, GET_USER_WITH_FAVOURITES, TOGGLE_FAVOURITE} from "../graphql/queries/queries";
+import {GET_MEDIA, GET_USER_WITH_FAVOURITES, TOGGLE_FAVOURITE} from "../graphql/queries/queries";
 import {CharacterRole, MediaListStatus, MediaType} from "../../generated/graphql";
 import {AuthService} from "./auth-service.service";
 import {HttpHeaders} from "@angular/common/http";
@@ -11,19 +11,21 @@ import {HttpHeaders} from "@angular/common/http";
 export class AniListHttpClientService {
   constructor(private apollo: Apollo, private authService: AuthService) {}
 
-  getUserAndType(userName: string, type: MediaType, role?: CharacterRole, status_in?: MediaListStatus[]) {
+  // TODO Test if auth token is needed for access to private lists
+
+  getMedia(userName: string, type: MediaType, role?: CharacterRole, status_in?: MediaListStatus[]) {
     return this.apollo.query({
-      query: GET_TYPE, variables: {
+      query: GET_MEDIA, variables: {
         userName, type, role, status_in
-      },
+      }
     });
   }
 
-  toggleFavourite( mangaId?: number, characterId?: number, staffId?: number, studioId?: number) {
+  toggleFavouriteCharacter(characterId: number) {
 
     return this.apollo.mutate({
       mutation: TOGGLE_FAVOURITE, variables: {
-        mangaId, characterId, staffId, studioId
+        characterId
       }, context : {
         headers: this.getAuthHeader()
       }

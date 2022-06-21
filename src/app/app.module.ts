@@ -38,6 +38,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { GenderSelectionComponent } from './components/gender-selection/gender-selection.component';
 import {GenderInfoDialogComponent} from "./components/gender-selection/gender-info-dialog/gender-info-dialog.component";
 import {MatDialogModule} from "@angular/material/dialog";
+import { HotToastModule } from '@ngneat/hot-toast';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     NgxEnvModule,
     MatProgressBarModule,
     MatDialogModule,
+    HotToastModule.forRoot(),
   ],
   providers: [AniListHttpClientService],
   bootstrap: [AppComponent]

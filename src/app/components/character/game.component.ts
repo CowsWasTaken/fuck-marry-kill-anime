@@ -1,12 +1,15 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Character, CharacterPartsFragment} from "../../../generated/graphql";
 import {PickingService} from "../../services/picking.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-game', templateUrl: './game.component.html', styleUrls: ['./game.component.sass']
 })
 export class GameComponent implements OnInit {
 
+  @Input()
+  $isLogin: Observable<boolean>
 
   rangePerRound = 3
   round = 1
