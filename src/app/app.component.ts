@@ -71,7 +71,7 @@ export class AppComponent {
   }
 
   toggleFavouriteCharacter(number: number) {
-    this.anilist.toggleFavouriteCharacter(number).subscribe(({data}) => console.log(data))
+    this.anilist.toggleFavouriteCharacter(number).subscribe()
   }
 
   handleGameOverEvent() {

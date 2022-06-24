@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
       })))
       .subscribe(async (res) => {
         if (res.access_token && res.expires_in && res.token_type) {
-          console.log('user authenticated');
           this.authService.update(res as AuthToken);
         }
       });

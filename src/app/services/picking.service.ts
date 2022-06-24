@@ -33,7 +33,6 @@ export class PickingService {
 
   // works as it should
   setPick(newPick: PickTaken) {
-    console.log(newPick)
     const picks = this.takenPicks.getValue()
     this.cleanUpCurrentList(newPick, picks)
     picks.push(newPick)

@@ -15,7 +15,6 @@ export class FilterService {
 
   filterForSettingsFilter(mediaListCollection: MediaListCollectionPartsFragment, settingsFilter: SettingsFilter): MediaPartsFragment[] {
     const filteredMedia: MediaPartsFragment[] = []
-    console.log(settingsFilter)
     const {genres, yearPreference} = settingsFilter
     for (let list of mediaListCollection.lists!) {
       for (let entry of list!.entries!) {
