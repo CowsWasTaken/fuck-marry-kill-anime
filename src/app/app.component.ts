@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {AniListHttpClientService} from './services/ani-list-http-client.service';
 import {SettingsFilter} from "./models/Filter/SettingsFilter";
 import {
-  AniChartUserPartsFragment, CharacterConnectionPartsFragment,
+  AniChartUserPartsFragment,
+  CharacterConnectionPartsFragment,
   CharacterPartsFragment,
   CharacterRole,
   MediaListCollectionPartsFragment,
@@ -24,13 +25,10 @@ export class AppComponent {
   requestLoading: boolean = false
   MediaType = MediaType
   gameAlive: boolean = false  // can be replaced by enum with values, IN_GAME, GAME_END, etc. to interact with components
-  userInfo : AniChartUserPartsFragment | null = null
+  userInfo: AniChartUserPartsFragment | null = null
   isLogin$ = new BehaviorSubject<boolean>(false)
 
-  constructor(private anilist: AniListHttpClientService,
-              private dataExtractor: DataExtractService,
-              private filterService: FilterService,
-              private authService: AuthService) {
+  constructor(private anilist: AniListHttpClientService, private dataExtractor: DataExtractService, private filterService: FilterService, private authService: AuthService) {
   }
 
   ngOnInit() {

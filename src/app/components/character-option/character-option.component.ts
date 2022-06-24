@@ -10,16 +10,13 @@ import {Observable} from "rxjs";
   templateUrl: './character-option.component.html',
   styleUrls: ['./character-option.component.css']
 })
-export class CharacterOptionComponent implements OnInit {
+export class CharacterOptionComponent {
 
-  @Output()
-  toggleFavourite = new EventEmitter<number>()
+  @Output() toggleFavourite = new EventEmitter<number>()
 
-  @Input()
-  isLogin$: Observable<boolean>
+  @Input() isLogin$: Observable<boolean>
 
-  @Input()
-  isLiked$?: boolean
+  @Input() isLiked$?: boolean
 
   @Input() character: CharacterPartsFragment
   PickOption = PickOption
@@ -29,9 +26,6 @@ export class CharacterOptionComponent implements OnInit {
     pickingService.takenPicks.subscribe(takenPicks => {
       this.resetIfPickIsTaken(takenPicks)
     })
-  }
-
-  ngOnInit(): void {
   }
 
   emitChange() {

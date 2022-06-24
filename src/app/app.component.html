@@ -1,8 +1,10 @@
-<mat-progress-bar class="mt-1" mode="indeterminate" *ngIf="requestLoading"></mat-progress-bar>
+<mat-progress-bar *ngIf="requestLoading" class="mt-1" mode="indeterminate"></mat-progress-bar>
 <div class="m-20">
   <app-login class="flex justify-center mb-10"></app-login>
   <div *ngIf="characters" class="mb-20">
-    <app-game *ngIf="gameAlive" [characters]="characters" (gameOverEventEmitter)="handleGameOverEvent()" [isLogin$]="isLogin$" (toggleFavourite)="toggleFavouriteCharacter($event)" [favourites]="getFavourites()"></app-game>
+    <app-game (gameOverEventEmitter)="handleGameOverEvent()" (toggleFavourite)="toggleFavouriteCharacter($event)" *ngIf="gameAlive"
+              [characters]="characters" [favourites]="getFavourites()"
+              [isLogin$]="isLogin$"></app-game>
   </div>
 
   <div class="border-2 border-gray-300 rounded-md">

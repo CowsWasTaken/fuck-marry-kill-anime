@@ -1,22 +1,22 @@
-<mat-form-field class="w-full" appearance="fill">
+<mat-form-field appearance="fill" class="w-full">
   <mat-label>Genre</mat-label>
   <mat-chip-list #chipList aria-label="Genre selection">
     <mat-chip
-      *ngFor="let genre of genres"
-      (removed)="remove(genre)">
+      (removed)="remove(genre)"
+      *ngFor="let genre of genres">
       {{genre}}
       <button matChipRemove>
         <mat-icon>cancel</mat-icon>
       </button>
     </mat-chip>
     <input
-      placeholder="New genre..."
+      (matChipInputTokenEnd)="add($event)"
       [(ngModel)]="genreInput"
       [formControl]="genreCtrl"
       [matAutocomplete]="auto"
       [matChipInputFor]="chipList"
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      (matChipInputTokenEnd)="add($event)">
+      placeholder="New genre...">
   </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
     <mat-option *ngFor="let genre of filteredGenres | async" [value]="genre">

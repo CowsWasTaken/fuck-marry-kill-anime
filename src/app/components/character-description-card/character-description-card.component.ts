@@ -7,19 +7,15 @@ import {Observable} from "rxjs";
   templateUrl: './character-description-card.component.html',
   styleUrls: ['./character-description-card.component.sass']
 })
-export class CharacterDescriptionCardComponent{
+export class CharacterDescriptionCardComponent {
 
-  @Input()
-  character: CharacterPartsFragment
+  @Input() character: CharacterPartsFragment
 
-  @Input()
-  isLogin$: Observable<boolean>
+  @Input() isLogin$: Observable<boolean>
 
-  @Input()
-  isLiked?: boolean
+  @Input() isLiked?: boolean
 
-  @Output()
-  toggleFavourite = new EventEmitter<number>()
+  @Output() toggleFavourite = new EventEmitter<number>()
 
   click() {
     // could be set after request was successful

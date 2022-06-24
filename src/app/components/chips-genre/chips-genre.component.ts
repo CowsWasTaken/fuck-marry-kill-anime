@@ -12,10 +12,8 @@ import {GenreCollection} from "../../constants/GenreCollection";
 })
 export class ChipsGenreComponent implements OnInit, FilterComponent {
 
-  @Input()
-  resetEvent?: Observable<void>
-  @Output()
-  genreEmitter= new EventEmitter<string[] | undefined>()
+  @Input() resetEvent?: Observable<void>
+  @Output() genreEmitter = new EventEmitter<string[] | undefined>()
   separatorKeysCodes: number[] = [ENTER, COMMA];
   genreCtrl = new FormControl();
   filteredGenres: Observable<string[]>;
@@ -73,6 +71,14 @@ export class ChipsGenreComponent implements OnInit, FilterComponent {
     this.emitChange()
   }
 
+  emitChange() {
+    this.genreEmitter.emit(Array.from(this.genres))
+  }
+
+  emitEmpty() {
+    this.genreEmitter.emit(undefined)
+  }
+
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
@@ -86,13 +92,5 @@ export class ChipsGenreComponent implements OnInit, FilterComponent {
       }
     }
     return ''
-  }
-
-  emitChange() {
-    this.genreEmitter.emit(Array.from(this.genres))
-  }
-
-  emitEmpty() {
-    this.genreEmitter.emit(undefined)
   }
 }

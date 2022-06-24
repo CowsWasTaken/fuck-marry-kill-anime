@@ -9,9 +9,9 @@ import {HttpHeaders} from "@angular/common/http";
   providedIn: 'root',
 })
 export class AniListHttpClientService {
-  constructor(private apollo: Apollo, private authService: AuthService) {}
+  constructor(private apollo: Apollo, private authService: AuthService) {
+  }
 
-  // TODO Test if auth token is needed for access to private lists
 
   getMedia(userName: string, type: MediaType, role?: CharacterRole, status_in?: MediaListStatus[]) {
     return this.apollo.query({
@@ -26,32 +26,31 @@ export class AniListHttpClientService {
     return this.apollo.mutate({
       mutation: TOGGLE_FAVOURITE, variables: {
         characterId
-      }, context : {
+      }, context: {
         headers: this.getAuthHeader()
       }
     })
   }
 
-  private getAuthToken() {
-    return this.authService.getAuthToken().getValue();
-  }
-
-  getUserWithFavourites () {
+  getUserWithFavourites() {
 
     return this.apollo.query({
-      query: GET_USER_WITH_FAVOURITES,
-      context: {
+      query: GET_USER_WITH_FAVOURITES, context: {
         headers: this.getAuthHeader()
       }
     })
   }
 
   getAuthHeader(): HttpHeaders {
-    const authToken= this.getAuthToken();
+    const authToken = this.getAuthToken();
     if (!authToken) {
       throw new Error('Cannot make User Information Request without auth token from user')
     }
     return new HttpHeaders().set("Authorization", "Bearer " + authToken.access_token)
+  }
+
+  private getAuthToken() {
+    return this.authService.getAuthToken().getValue();
   }
 
 

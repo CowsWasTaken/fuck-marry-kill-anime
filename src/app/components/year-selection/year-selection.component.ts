@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {YearFilter} from "../../models/Filter/YearFilter";
 import {Observable} from "rxjs";
-import { YearFilterType } from 'src/app/models/Filter/YearFilterType';
+import {YearFilterType} from 'src/app/models/Filter/YearFilterType';
 import {FilterComponent} from "../../interfaces/FilterComponent";
 
 @Component({
@@ -10,8 +10,7 @@ import {FilterComponent} from "../../interfaces/FilterComponent";
   styleUrls: ['./year-selection.component.css']
 })
 export class YearSelectionComponent implements OnInit, FilterComponent {
-  @Input()
-  resetEvent?: Observable<void>
+  @Input() resetEvent?: Observable<void>
   @Output() yearEmitter = new EventEmitter<YearFilter>();
   currentYear = new Date().getFullYear()
   startYear = 1950
@@ -21,7 +20,7 @@ export class YearSelectionComponent implements OnInit, FilterComponent {
 
   YearFilterType = YearFilterType
 
-  defaultFilterType: YearFilterType = YearFilterType.disabled
+  defaultFilterType: YearFilterType = YearFilterType.DISABLED
   filterType: YearFilterType
 
   constructor() {

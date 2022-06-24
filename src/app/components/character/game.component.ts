@@ -8,20 +8,18 @@ import {Observable} from "rxjs";
 })
 export class GameComponent implements OnInit {
 
-  @Output()
-  toggleFavourite = new EventEmitter<number>()
+  @Output() toggleFavourite = new EventEmitter<number>()
 
-  @Input()
-  isLogin$: Observable<boolean>
+  @Input() isLogin$: Observable<boolean>
 
-  @Input()
-  favourites?: CharacterConnectionPartsFragment
+  @Input() favourites?: CharacterConnectionPartsFragment
 
   rangePerRound = 3
   round = 1
   isValid = false
   characterRoundOptions: CharacterPartsFragment[] = []
   initialGame = true // value if the characters have been updated via parent
+  @Output() gameOverEventEmitter = new EventEmitter<boolean>()
 
   constructor(private pickingService: PickingService) {
   }
@@ -40,9 +38,6 @@ export class GameComponent implements OnInit {
       this.changeCharacters()
     }
   }
-
-  @Output()
-  gameOverEventEmitter = new EventEmitter<boolean>()
 
   ngOnInit(): void {
     this.pickingService.takenPicks.subscribe(res => this.isValid = res.length === this.rangePerRound)
@@ -71,6 +66,6 @@ export class GameComponent implements OnInit {
   }
 
   isLiked(characterId: number): boolean {
-      return !!this.favourites?.nodes!.find(characterNode => characterNode!.id === characterId);
+    return !!this.favourites?.nodes!.find(characterNode => characterNode!.id === characterId);
   }
 }

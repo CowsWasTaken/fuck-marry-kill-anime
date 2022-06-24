@@ -1,10 +1,11 @@
-<mat-checkbox [(ngModel)]="allComplete" (change)="setAllTasks(allComplete);emitChange()" class="mr-16">All</mat-checkbox>
+<mat-checkbox (change)="setAllTasks(allComplete);emitChange()" [(ngModel)]="allComplete" class="mr-16">All
+</mat-checkbox>
 <div class="flex space-x-4">
 
-<mat-checkbox *ngFor="let status of statusList, let last = last"
-              [(ngModel)]="status.checked" (change)="checkAllComplete();emitChange()"
-              color="primary" [class]="status.checked.toString()">
-{{status.status | titlecase}}
-</mat-checkbox>
+  <mat-checkbox (change)="checkAllComplete();emitChange()"
+                *ngFor="let status of statusList, let last = last" [(ngModel)]="status.checked"
+                [class]="status.checked.toString()" color="primary">
+    {{status.status | titlecase}}
+  </mat-checkbox>
 </div>
 

@@ -11,14 +11,13 @@ import {GenderInfoDialogComponent} from "./gender-info-dialog/gender-info-dialog
 })
 export class GenderSelectionComponent implements OnInit {
 
-  @Input()
-  resetEvent?: Observable<void>
+  @Input() resetEvent?: Observable<void>
   @Output() genderEmitter = new EventEmitter<GenderType>();
   tooltipDelay = 100 // in ms
 
   GenderType = GenderType
 
-  selectedType : GenderType
+  selectedType: GenderType
 
   constructor(public dialog: MatDialog) {
     this.setDefaultValue()

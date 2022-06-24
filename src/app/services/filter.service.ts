@@ -48,13 +48,13 @@ export class FilterService {
 
   isMediaValidForYear(media: MediaPartsFragment, yearFilter: YearFilter) {
     switch (yearFilter.filterType) {
-      case YearFilterType.disabled:
+      case YearFilterType.DISABLED:
         return true
-      case YearFilterType.equal:
+      case YearFilterType.EQUAL:
         return media.seasonYear! === yearFilter.year
-      case YearFilterType.after:
+      case YearFilterType.AFTER:
         return media.seasonYear! >= yearFilter.year
-      case YearFilterType.before:
+      case YearFilterType.BEFORE:
         return media.seasonYear! <= yearFilter.year
       default:
         throw Error("Cannot Filter Media For FilterType")
