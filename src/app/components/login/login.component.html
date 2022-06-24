@@ -1,6 +1,6 @@
 <button [disabled]="isClientInValid()" color="primary" mat-stroked-button>
   <a [style.pointer-events]="isClientInValid() ? 'none' : 'all'"
-    href="https://anilist.co/api/v2/oauth/authorize?client_id={{
+     href="https://anilist.co/api/v2/oauth/authorize?client_id={{
       client_id
     }}&response_type=token"
   >Login with AniList</a>

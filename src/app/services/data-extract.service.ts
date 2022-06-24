@@ -8,16 +8,7 @@ import {FilterService} from "./filter.service";
 })
 export class DataExtractService {
 
-  constructor() {
-  }
-
-  // TODO check if the character exist in list because a character can exist in more than one anime
-  // so better check for the id and use a map or some kind like that
-
-  // TODO filter for gender
-
-
-  extractCharacters(mediaListCollection: MediaListCollectionPartsFragment) : CharacterPartsFragment[] {
+  extractCharacters(mediaListCollection: MediaListCollectionPartsFragment): CharacterPartsFragment[] {
     let characters: CharacterPartsFragment[] = []
     if (mediaListCollection.lists === undefined) {
       return []
@@ -34,7 +25,7 @@ export class DataExtractService {
     return characters
   }
 
-  extractCharactersForMedia (media: MediaPartsFragment):CharacterPartsFragment[]  {
+  extractCharactersForMedia(media: MediaPartsFragment): CharacterPartsFragment[] {
     let characters: CharacterPartsFragment[] = []
     if (media === undefined || media.characters === undefined || media.characters!.nodes === undefined) {
       return []
@@ -80,8 +71,7 @@ export class DataExtractService {
       currentIndex--;
 
       // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
 
     return array;

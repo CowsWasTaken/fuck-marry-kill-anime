@@ -1,16 +1,17 @@
-
-<mat-icon matTooltip="Gender Info" [style.cursor]="'pointer'" [matTooltipShowDelay]="tooltipDelay" aria-label="after-label" class="gender-icon flex align-middle mx-3" (click)="openDialog()">info</mat-icon>
+<mat-icon (click)="openDialog()" [matTooltipShowDelay]="tooltipDelay" [style.cursor]="'pointer'"
+          aria-label="after-label" class="gender-icon flex align-middle mx-3" matTooltip="Gender Info">info
+</mat-icon>
 <mat-button-toggle-group (click)="emitChange()" [(ngModel)]="selectedType">
-  <mat-button-toggle [matTooltipShowDelay]="tooltipDelay" checked
-                     aria-label="before-label"  matTooltip="All" [value]="GenderType.ALL" >
+  <mat-button-toggle [matTooltipShowDelay]="tooltipDelay" [value]="GenderType.ALL"
+                     aria-label="before-label" checked matTooltip="All">
     <mat-icon class="gender-icon">group</mat-icon>
   </mat-button-toggle>
   <mat-button-toggle [matTooltipShowDelay]="tooltipDelay"
-                     aria-label="equal-label" matTooltip="Female" [value]="GenderType.FEMALE">
+                     [value]="GenderType.FEMALE" aria-label="equal-label" matTooltip="Female">
     <mat-icon class="gender-icon">woman</mat-icon>
   </mat-button-toggle>
   <mat-button-toggle [matTooltipShowDelay]="tooltipDelay"
-                     aria-label="after-label" matTooltip="Male" [value]="GenderType.MALE">
-    <mat-icon  class="gender-icon">man</mat-icon>
+                     [value]="GenderType.MALE" aria-label="after-label" matTooltip="Male">
+    <mat-icon class="gender-icon">man</mat-icon>
   </mat-button-toggle>
 </mat-button-toggle-group>

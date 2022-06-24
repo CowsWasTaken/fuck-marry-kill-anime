@@ -10,12 +10,14 @@ import {AniListHttpClientService} from "../../services/ani-list-http-client.serv
 })
 export class NameSelectionComponent implements OnInit {
 
-  @Input()
-  resetEvent?: Observable<void>
-  @Output()
-  nameEmitter= new EventEmitter<string>()
+  @Input() resetEvent?: Observable<void>
+  @Output() nameEmitter = new EventEmitter<string>()
+  id: number
 
-   private _userName: string = ''
+  constructor(private authService: AuthService, private anilist: AniListHttpClientService) {
+  }
+
+  private _userName: string = ''
 
   get userName(): string {
     return this._userName
@@ -25,13 +27,9 @@ export class NameSelectionComponent implements OnInit {
     this._userName = value
     this.emitChange()
   }
-  id: number
-
-  constructor(private authService: AuthService, private anilist: AniListHttpClientService) {
-  }
 
   ngOnInit(): void {
-    this.authService.getAuthToken().subscribe(token =>  {
+    this.authService.getAuthToken().subscribe(token => {
       if (token !== null) {
         this.anilist.getUserWithFavourites().subscribe(({data, error}) => {
           this.userName = data.AniChartUser!.user!.name
@@ -44,6 +42,7 @@ export class NameSelectionComponent implements OnInit {
       this.emitChange()
     })
   }
+
   emitChange() {
     this.nameEmitter.emit(this.userName);
   }

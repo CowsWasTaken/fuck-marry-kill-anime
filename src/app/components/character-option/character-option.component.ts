@@ -1,15 +1,22 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PickOption} from "../../models/Picking/PickOption";
 import {PickTaken} from "../../models/Picking/PickTaken";
 import {PickingService} from "../../services/picking.service";
 import {CharacterPartsFragment} from "../../../generated/graphql";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-character-option',
   templateUrl: './character-option.component.html',
   styleUrls: ['./character-option.component.css']
 })
-export class CharacterOptionComponent implements OnInit {
+export class CharacterOptionComponent {
+
+  @Output() toggleFavourite = new EventEmitter<number>()
+
+  @Input() isLogin$: Observable<boolean>
+
+  @Input() isLiked$?: boolean
 
   @Input() character: CharacterPartsFragment
   PickOption = PickOption
@@ -19,9 +26,6 @@ export class CharacterOptionComponent implements OnInit {
     pickingService.takenPicks.subscribe(takenPicks => {
       this.resetIfPickIsTaken(takenPicks)
     })
-  }
-
-  ngOnInit(): void {
   }
 
   emitChange() {
@@ -39,5 +43,9 @@ export class CharacterOptionComponent implements OnInit {
         this.pick = PickOption.UNCHECKED
       }
     }
+  }
+
+  toggleFavouriteEvent($event: number) {
+    this.toggleFavourite.emit($event)
   }
 }

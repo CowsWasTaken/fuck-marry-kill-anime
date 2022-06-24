@@ -14,9 +14,9 @@ export class GameSettingsComponent {
 
   @Output() filterEmitter = new EventEmitter<SettingsFilter>()
 
-  mediaTypes : MediaType[] = [MediaType.Anime, MediaType.Manga]
+  mediaTypes: MediaType[] = [MediaType.Anime, MediaType.Manga]
 
-  userNameInput : string = ''
+  userNameInput: string = ''
 
   public currentTabIndex = 0;
 

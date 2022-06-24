@@ -1,10 +1,11 @@
 <div class="flex justify-between mt-20">
   <ng-container *ngFor="let character of characterRoundOptions">
-    <app-character-option [character]="character"></app-character-option>
+    <app-character-option (toggleFavourite)="toggleFavouriteEvent($event)" [character]="character" [isLiked$]="isLiked(character.id)"
+                          [isLogin$]="isLogin$"></app-character-option>
   </ng-container>
 </div>
 
 <div class="flex justify-center mt-8">
 
-<button mat-stroked-button color="primary" (click)="round=round+1;triggerNext()" [disabled]="!isValid">Next</button>
+  <button (click)="round=round+1;triggerNext()" [disabled]="!isValid" color="primary" mat-stroked-button>Next</button>
 </div>

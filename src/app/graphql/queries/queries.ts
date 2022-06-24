@@ -1,5 +1,6 @@
 import {gql} from 'apollo-angular';
 import {
+  AniChartUser,
   AniChartUserParts, AniChartUserPartsFragment,
   Character,
   CharacterParts,
@@ -12,7 +13,7 @@ import {
 } from "../../../generated/graphql";
 
 
-export const GET_TYPE = gql<{ MediaListCollection: MediaListCollectionPartsFragment }, { userName: string, type: MediaType, role?: CharacterRole, status_in?: MediaListStatus[] }>`
+export const GET_MEDIA = gql<{ MediaListCollection: MediaListCollectionPartsFragment}, { userName: string, type: MediaType, role?: CharacterRole, status_in?: MediaListStatus[] }>`
   ${MediaListCollectionParts}
   query MediaListCollection($userName: String!, $type: MediaType!, $status_in: [MediaListStatus], $role: CharacterRole) {
     MediaListCollection(userName: $userName, type: $type, status_in: $status_in) {
@@ -27,10 +28,10 @@ export const GET_GENRES = gql<{ GenreCollection: string[] }, {}>`
     GenreCollection
   }`
 
-export const TOGGLE_FAVOURITE = gql<{ Character: CharacterPartsFragment }, { animeId?: number, mangaId?: number, characterId?: number, staffId?: number, studioId?: number }>`
+export const TOGGLE_FAVOURITE = gql<{ Character: CharacterPartsFragment }, {characterId: number}>`
   ${CharacterParts}
-  mutation {
-    ToggleFavourite(characterId: 121514) {
+  mutation($characterId: Int) {
+    ToggleFavourite(characterId: $characterId) {
       characters {
         nodes {
           ...CharacterParts

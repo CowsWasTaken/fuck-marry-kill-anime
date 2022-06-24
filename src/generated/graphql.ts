@@ -4679,6 +4679,8 @@ export type MediaListCollectionPartsFragment = { __typename?: 'MediaListCollecti
 
 export type AniChartUserPartsFragment = { __typename?: 'AniChartUser', user?: { __typename?: 'User', id: number, name: string, favourites?: { __typename?: 'Favourites', characters?: { __typename?: 'CharacterConnection', nodes?: Array<{ __typename?: 'Character', id: number } | null> | null } | null } | null } | null };
 
+export type CharacterConnectionPartsFragment = { __typename?: 'CharacterConnection', nodes?: Array<{ __typename?: 'Character', id: number } | null> | null };
+
 export const CharacterParts = gql`
     fragment CharacterParts on Character {
   id
@@ -4751,6 +4753,13 @@ export const MediaListCollectionParts = gql`
 }
     ${MediaListParts}
 ${UserParts}`;
+export const CharacterConnectionParts = gql`
+    fragment CharacterConnectionParts on CharacterConnection {
+  nodes {
+    id
+  }
+}
+    `;
 export const AniChartUserParts = gql`
     fragment AniChartUserParts on AniChartUser {
   user {
@@ -4758,11 +4767,9 @@ export const AniChartUserParts = gql`
     name
     favourites {
       characters {
-        nodes {
-          id
-        }
+        ...CharacterConnectionParts
       }
     }
   }
 }
-    `;
+    ${CharacterConnectionParts}`;

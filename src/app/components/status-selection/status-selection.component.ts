@@ -17,15 +17,24 @@ export class StatusSelectionComponent implements OnInit, FilterComponent {
 
   statusList: StatusFilter[]
 
-  defaultList = [
-    { status: MediaListStatus.Completed, checked: true },
-    { status: MediaListStatus.Current, checked: false },
-    { status: MediaListStatus.Paused, checked: false },
-    { status: MediaListStatus.Planning, checked: false },
-    { status: MediaListStatus.Repeating, checked: true },
-    { status: MediaListStatus.Dropped, checked: false },
-  ]
+  defaultList = [{status: MediaListStatus.Completed, checked: true}, {
+    status: MediaListStatus.Current,
+    checked: false
+  }, {status: MediaListStatus.Paused, checked: false}, {
+    status: MediaListStatus.Planning,
+    checked: false
+  }, {status: MediaListStatus.Repeating, checked: true}, {status: MediaListStatus.Dropped, checked: false},]
   allComplete = true
+
+  private static convertList(list: StatusFilter[]): any[] {
+    const convList: MediaListStatus[] = []
+    for (const status of list) {
+      if (status.checked) {
+        convList.push(status.status)
+      }
+    }
+    return convList;
+  }
 
   ngOnInit(): void {
     this.setToDefault()
@@ -63,15 +72,5 @@ export class StatusSelectionComponent implements OnInit, FilterComponent {
   emitChange() {
     const list = StatusSelectionComponent.convertList(this.statusList)
     this.statusEmitter.emit(list)
-  }
-
-  private static convertList(list: StatusFilter[]) : any[]{
-    const convList : MediaListStatus[] = []
-    for (const status of list) {
-      if (status.checked) {
-        convList.push(status.status)
-      }
-    }
-    return convList;
   }
 }

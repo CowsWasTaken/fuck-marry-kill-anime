@@ -40,6 +40,11 @@ export class PickingService {
     this.takenPicks.next(picks)
   }
 
+  submitPicks() {
+    this.submittedPicks.push(this.takenPicks.getValue())
+    this.takenPicks.next([])
+  }
+
   /**
    *
    * @param takenPick
@@ -72,9 +77,4 @@ export class PickingService {
     const matchingPickTypeIndex = list.findIndex(element => element.pick === pick) // index for the same PickOption Type
     PickingService.removeIndexFromList(matchingPickTypeIndex, list)
   }
-
-  submitPicks() {
-    this.submittedPicks.push(this.takenPicks.getValue())
-    this.takenPicks.next([])
-  }
- }
+}

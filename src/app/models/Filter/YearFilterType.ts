@@ -1,3 +1,3 @@
 export enum YearFilterType {
-     after = 'after' , before = 'before' ,  equal = 'equal' , disabled = 'disabled'
+     AFTER = 'after' , BEFORE = 'before' ,  EQUAL = 'equal' , DISABLED = 'disabled'
 }
