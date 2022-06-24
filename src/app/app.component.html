@@ -2,7 +2,7 @@
 <div class="m-20">
   <app-login class="flex justify-center mb-10"></app-login>
   <div *ngIf="characters" class="mb-20">
-    <app-game *ngIf="gameAlive" [characters]="characters" (gameOverEventEmitter)="handleGameOverEvent()"[$isLogin]="$isLogin"></app-game>
+    <app-game *ngIf="gameAlive" [characters]="characters" (gameOverEventEmitter)="handleGameOverEvent()" [isLogin$]="isLogin$" (toggleFavourite)="toggleFavouriteCharacter($event)" [favourites]="getFavourites()"></app-game>
   </div>
 
   <div class="border-2 border-gray-300 rounded-md">

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Character, CharacterPartsFragment} from "../../../generated/graphql";
+import {CharacterConnectionPartsFragment, CharacterPartsFragment} from "../../../generated/graphql";
 import {PickingService} from "../../services/picking.service";
 import {Observable} from "rxjs";
 
@@ -8,8 +8,14 @@ import {Observable} from "rxjs";
 })
 export class GameComponent implements OnInit {
 
+  @Output()
+  toggleFavourite = new EventEmitter<number>()
+
   @Input()
-  $isLogin: Observable<boolean>
+  isLogin$: Observable<boolean>
+
+  @Input()
+  favourites?: CharacterConnectionPartsFragment
 
   rangePerRound = 3
   round = 1
@@ -58,5 +64,13 @@ export class GameComponent implements OnInit {
         this.gameOverEventEmitter.emit(true)
       }
     }
+  }
+
+  toggleFavouriteEvent($event: number) {
+    this.toggleFavourite.emit($event)
+  }
+
+  isLiked(characterId: number): boolean {
+      return !!this.favourites?.nodes!.find(characterNode => characterNode!.id === characterId);
   }
 }

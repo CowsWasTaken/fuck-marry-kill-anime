@@ -10,9 +10,9 @@
   </mat-card-content>
   <mat-card-actions>
     <!--            TODO implement this favourite button-->
-    <button aria-label="Add to favourites" color="warn" mat-icon-button [matTooltip]="($isLogin | async) ? '' : 'Login Required'"
-            matTooltipShowDelay="100" [disabled]="!($isLogin | async)" (click)="click()">
-      <mat-icon [style.color]="$isLiked ? '#757575' : ''">favorite</mat-icon>
+    <button aria-label="Add to favourites" color="warn" mat-icon-button [matTooltip]="(isLogin$ | async) ? '' : 'Login Required'"
+            matTooltipShowDelay="100" [disabled]="!(isLogin$ | async)" (click)="click()">
+      <mat-icon [style.color]="isLiked ?  '#f44336': '#757575'">favorite</mat-icon>
     </button>
     <a [href]="character.siteUrl" aria-label="Site Url" mat-icon-button matTooltip="Open Site"
        matTooltipShowDelay="100"

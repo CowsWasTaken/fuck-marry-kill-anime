@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CharacterPartsFragment} from "../../../generated/graphql";
 import {Observable} from "rxjs";
 
@@ -7,23 +7,23 @@ import {Observable} from "rxjs";
   templateUrl: './character-description-card.component.html',
   styleUrls: ['./character-description-card.component.sass']
 })
-export class CharacterDescriptionCardComponent implements OnInit {
-
-  constructor() { }
+export class CharacterDescriptionCardComponent{
 
   @Input()
   character: CharacterPartsFragment
 
   @Input()
-  $isLogin: Observable<boolean>
+  isLogin$: Observable<boolean>
 
   @Input()
-  $isLiked: Observable<boolean | undefined>
-  ngOnInit(): void {
-  }
+  isLiked?: boolean
+
+  @Output()
+  toggleFavourite = new EventEmitter<number>()
 
   click() {
-    // TODO implement functionality with like click
-    console.log('click')
+    // could be set after request was successful
+    this.isLiked = !this.isLiked
+    this.toggleFavourite.emit(this.character.id)
   }
 }

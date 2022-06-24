@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PickOption} from "../../models/Picking/PickOption";
 import {PickTaken} from "../../models/Picking/PickTaken";
 import {PickingService} from "../../services/picking.service";
@@ -12,11 +12,14 @@ import {Observable} from "rxjs";
 })
 export class CharacterOptionComponent implements OnInit {
 
-  @Input()
-  $isLogin: Observable<boolean>
+  @Output()
+  toggleFavourite = new EventEmitter<number>()
 
   @Input()
-  $isLiked: Observable<boolean | undefined>
+  isLogin$: Observable<boolean>
+
+  @Input()
+  isLiked$?: boolean
 
   @Input() character: CharacterPartsFragment
   PickOption = PickOption
@@ -46,5 +49,9 @@ export class CharacterOptionComponent implements OnInit {
         this.pick = PickOption.UNCHECKED
       }
     }
+  }
+
+  toggleFavouriteEvent($event: number) {
+    this.toggleFavourite.emit($event)
   }
 }

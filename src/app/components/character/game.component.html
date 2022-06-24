@@ -1,6 +1,6 @@
 <div class="flex justify-between mt-20">
   <ng-container *ngFor="let character of characterRoundOptions">
-    <app-character-option [character]="character" [$isLogin]="$isLogin"></app-character-option>
+    <app-character-option [character]="character" [isLogin$]="isLogin$" (toggleFavourite)="toggleFavouriteEvent($event)" [isLiked$]="isLiked(character.id)"></app-character-option>
   </ng-container>
 </div>
 
