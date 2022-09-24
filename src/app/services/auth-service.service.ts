@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {AuthToken} from '../models/Auth/AuthToken';
+import {BehaviorSubject} from 'rxjs';
+import {AnilistAuthToken} from '../models/Auth/anilist-auth-token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private auth_token = new BehaviorSubject<AuthToken | null>(null);
+  private auth_token = new BehaviorSubject<AnilistAuthToken | null>(null);
 
-  update(authToken: AuthToken) {
+  update(authToken: AnilistAuthToken) {
     this.auth_token.next(authToken);
   }
 

@@ -1,19 +1,17 @@
 import {Component} from '@angular/core';
 import {AniListHttpClientService} from './services/ani-list-http-client.service';
 import {SettingsFilter} from "./models/Filter/SettingsFilter";
-import {
-  AniChartUserPartsFragment,
-  CharacterConnectionPartsFragment,
-  CharacterPartsFragment,
-  CharacterRole,
-  MediaListCollectionPartsFragment,
-  MediaPartsFragment,
-  MediaType
-} from "../generated/graphql";
+
 import {DataExtractService} from "./services/data-extract.service";
 import {FilterService} from "./services/filter.service";
 import {AuthService} from "./services/auth-service.service";
 import {BehaviorSubject, firstValueFrom} from "rxjs";
+import {
+  AniChartUserPartsFragment, CharacterConnectionPartsFragment,
+  CharacterPartsFragment, CharacterRole,
+  MediaListCollectionPartsFragment, MediaPartsFragment,
+  MediaType
+} from "./graphql/graphql";
 
 @Component({
   selector: 'app-root', templateUrl: './app.component.html', styleUrls: ['./app.component.sass'],

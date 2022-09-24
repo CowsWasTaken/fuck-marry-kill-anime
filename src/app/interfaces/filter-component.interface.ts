@@ -1,4 +1,4 @@
-export interface FilterComponent {
+export interface FilterComponentInterface {
   setToDefault(): void
   emitChange() : void
 }

@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Apollo} from 'apollo-angular';
-import {GET_MEDIA, GET_USER_WITH_FAVOURITES, TOGGLE_FAVOURITE} from "../graphql/queries/queries";
-import {CharacterRole, MediaListStatus, MediaType} from "../../generated/graphql";
+import {GET_MEDIA, GET_USER_WITH_FAVOURITES, TOGGLE_FAVOURITE} from "../graphql/queries";
 import {AuthService} from "./auth-service.service";
 import {HttpHeaders} from "@angular/common/http";
+import {CharacterRole, MediaListStatus, MediaType} from "../graphql/graphql";
 
 @Injectable({
   providedIn: 'root',

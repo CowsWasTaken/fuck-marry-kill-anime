@@ -1,5 +1,5 @@
 import {PickOption} from "./PickOption";
-import {CharacterPartsFragment} from "../../../generated/graphql";
+import {CharacterPartsFragment} from "../../graphql/graphql";
 
 export interface PickTaken {
   pick: PickOption,

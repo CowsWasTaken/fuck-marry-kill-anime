@@ -1,15 +1,14 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Observable} from "rxjs";
-import {FilterComponent} from "../../interfaces/FilterComponent";
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FilterComponentInterface} from "../../interfaces/filter-component.interface";
 import {StatusFilter} from "../../models/Filter/StatusFilter";
-import {MediaListStatus} from "../../../generated/graphql";
+import {MediaListStatus} from "../../graphql/graphql";
 
 @Component({
   selector: 'app-status-selection',
   templateUrl: './status-selection.component.html',
   styleUrls: ['./status-selection.component.css']
 })
-export class StatusSelectionComponent implements OnInit, FilterComponent {
+export class StatusSelectionComponent implements OnInit, FilterComponentInterface {
   // TODO reset event currently not supported because value change of checkbox not getting visually updated
   // @Input() resetEvent?: Observable<void>
 

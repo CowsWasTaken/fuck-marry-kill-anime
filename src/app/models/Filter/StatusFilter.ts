@@ -1,4 +1,4 @@
-import {MediaListStatus} from "../../../generated/graphql";
+import {MediaListStatus} from "../../graphql/graphql";
 
 export interface StatusFilter {
   status: MediaListStatus,

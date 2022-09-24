@@ -1,12 +1,9 @@
 import {Injectable} from '@angular/core';
-import {
-  CharacterPartsFragment,
-  MediaListCollectionPartsFragment, MediaPartsFragment
-} from "../../generated/graphql";
 import {YearFilter} from "../models/Filter/YearFilter";
 import {YearFilterType} from "../models/Filter/YearFilterType";
 import {SettingsFilter} from "../models/Filter/SettingsFilter";
-import {GenderType} from "../components/gender-selection/models/GenderType";
+import {GenderType} from "../models/GenderType";
+import {CharacterPartsFragment, MediaListCollectionPartsFragment, MediaPartsFragment} from "../graphql/graphql";
 
 @Injectable({
   providedIn: 'root'

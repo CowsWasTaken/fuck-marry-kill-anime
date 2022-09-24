@@ -2,16 +2,16 @@ overwrite: true
 schema: "https://graphql.anilist.co"
 documents: "src/app/graphql/fragments.graphql"
 generates:
-  src/generated/graphql.ts:
+  src/app/graphql/graphql.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
       - "typescript-document-nodes"
 
-  src/generated/fragment-matcher.json:
+  src/app/graphql/fragment-matcher.json:
     plugins:
       - "fragment-matcher"
 
-  ./graphql.schema.json:
+  src/app/graphql/graphql.schema.json:
     plugins:
       - "introspection"

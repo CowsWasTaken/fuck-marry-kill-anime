@@ -2,8 +2,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SettingsFilter} from "../../models/Filter/SettingsFilter";
 import {YearFilter} from "../../models/Filter/YearFilter";
 import {Subject} from "rxjs";
-import {MediaListStatus, MediaType} from "../../../generated/graphql";
-import {GenderType} from "../gender-selection/models/GenderType";
+import {GenderType} from "../../models/GenderType";
+import {MediaListStatus, MediaType} from "../../graphql/graphql";
 
 @Component({
   selector: 'app-game-settings',

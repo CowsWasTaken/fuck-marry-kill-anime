@@ -2,21 +2,21 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {YearFilter} from "../../models/Filter/YearFilter";
 import {Observable} from "rxjs";
 import {YearFilterType} from 'src/app/models/Filter/YearFilterType';
-import {FilterComponent} from "../../interfaces/FilterComponent";
+import {FilterComponentInterface} from "../../interfaces/filter-component.interface";
 
 @Component({
   selector: 'app-year-selection',
   templateUrl: './year-selection.component.html',
   styleUrls: ['./year-selection.component.css']
 })
-export class YearSelectionComponent implements OnInit, FilterComponent {
+export class YearSelectionComponent implements OnInit, FilterComponentInterface {
   @Input() resetEvent?: Observable<void>
   @Output() yearEmitter = new EventEmitter<YearFilter>();
-  currentYear = new Date().getFullYear()
-  startYear = 1950
-  defaultYear = 1990
-  inputYear: number
-  tooltipDelay = 100 // in ms
+  readonly currentYear = new Date().getFullYear()
+  readonly startYear = 1950
+  readonly defaultYear = 1990
+  inputYear: number = this.defaultYear
+  readonly tooltipDelay = 100 // in ms
 
   YearFilterType = YearFilterType
 
@@ -27,7 +27,6 @@ export class YearSelectionComponent implements OnInit, FilterComponent {
   }
 
   ngOnInit(): void {
-    this.setToDefault()
     this.resetEvent!.subscribe(() => {
       this.setToDefault()
     })

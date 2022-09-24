@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CharacterConnectionPartsFragment, CharacterPartsFragment} from "../../../generated/graphql";
 import {PickingService} from "../../services/picking.service";
 import {Observable} from "rxjs";
+import {CharacterConnectionPartsFragment, CharacterPartsFragment} from "../../graphql/graphql";
 
 @Component({
   selector: 'app-game', templateUrl: './game.component.html', styleUrls: ['./game.component.sass']
@@ -14,11 +14,11 @@ export class GameComponent implements OnInit {
 
   @Input() favourites?: CharacterConnectionPartsFragment
 
-  rangePerRound = 3
+  private readonly _rangePerRound = 3
   round = 1
-  isValid = false
+  isRoundValid = false
   characterRoundOptions: CharacterPartsFragment[] = []
-  initialGame = true // value if the characters have been updated via parent
+  private _initialGame = true // value if the characters have been updated via parent
   @Output() gameOverEventEmitter = new EventEmitter<boolean>()
 
   constructor(private pickingService: PickingService) {
@@ -32,15 +32,15 @@ export class GameComponent implements OnInit {
 
   @Input() set characters(characters: CharacterPartsFragment[]) {
     this._characters = characters
-    if (this.initialGame) {
-      this.initialGame = false
+    if (this._initialGame) {
+      this._initialGame = false
     } else {
       this.changeCharacters()
     }
   }
 
   ngOnInit(): void {
-    this.pickingService.takenPicks.subscribe(res => this.isValid = res.length === this.rangePerRound)
+    this.pickingService.takenPicks.subscribe(res => this.isRoundValid = (res.length === this._rangePerRound))
     this.changeCharacters()
   }
 
@@ -51,7 +51,7 @@ export class GameComponent implements OnInit {
 
   changeCharacters() {
     this.characterRoundOptions = []
-    for (let i = 0; i < this.rangePerRound; i++) {
+    for (let i = 0; i < this._rangePerRound; i++) {
       const character = this.characters.pop()
       if (character !== undefined) {
         this.characterRoundOptions.push(character)

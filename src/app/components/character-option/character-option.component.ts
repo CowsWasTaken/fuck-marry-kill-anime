@@ -2,8 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PickOption} from "../../models/Picking/PickOption";
 import {PickTaken} from "../../models/Picking/PickTaken";
 import {PickingService} from "../../services/picking.service";
-import {CharacterPartsFragment} from "../../../generated/graphql";
 import {Observable} from "rxjs";
+import {CharacterPartsFragment} from "../../graphql/graphql";
 
 @Component({
   selector: 'app-character-option',

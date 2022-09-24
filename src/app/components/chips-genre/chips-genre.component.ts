@@ -4,13 +4,13 @@ import {MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {map, Observable, startWith} from "rxjs";
 import {FormControl} from "@angular/forms";
-import {FilterComponent} from "../../interfaces/FilterComponent";
-import {GenreCollection} from "../../constants/GenreCollection";
+import {FilterComponentInterface} from "../../interfaces/filter-component.interface";
+import {GenreCollectionConst} from "../../constants/genre-collection.const";
 
 @Component({
   selector: 'app-chips-genre', templateUrl: './chips-genre.component.html', styleUrls: ['./chips-genre.component.css']
 })
-export class ChipsGenreComponent implements OnInit, FilterComponent {
+export class ChipsGenreComponent implements OnInit, FilterComponentInterface {
 
   @Input() resetEvent?: Observable<void>
   @Output() genreEmitter = new EventEmitter<string[] | undefined>()
@@ -18,7 +18,7 @@ export class ChipsGenreComponent implements OnInit, FilterComponent {
   genreCtrl = new FormControl();
   filteredGenres: Observable<string[]>;
   genres: Set<string> = new Set([]);
-  allGenres: string[] = GenreCollection;
+  allGenres: string[] = GenreCollectionConst;
 
   genreInput: string = ''
 

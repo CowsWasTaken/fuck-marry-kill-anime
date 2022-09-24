@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CharacterPartsFragment, MediaListCollectionPartsFragment, MediaPartsFragment} from "../../generated/graphql";
-import {GenderType} from "../components/gender-selection/models/GenderType";
-import {FilterService} from "./filter.service";
+import {CharacterPartsFragment, MediaListCollectionPartsFragment, MediaPartsFragment} from "../graphql/graphql";
 
 @Injectable({
   providedIn: 'root'

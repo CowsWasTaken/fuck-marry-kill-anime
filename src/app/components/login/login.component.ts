@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {map} from 'rxjs';
 import {environment} from 'src/environments/environment';
 import {AuthService} from '../../services/auth-service.service';
-import {AuthToken} from '../../models/Auth/AuthToken';
+import {AnilistAuthToken} from '../../models/Auth/anilist-auth-token';
 
 @Component({
   selector: 'app-login', templateUrl: './login.component.html', styleUrls: ['./login.component.sass'],
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       })))
       .subscribe(async (res) => {
         if (res.access_token && res.expires_in && res.token_type) {
-          this.authService.update(res as AuthToken);
+          this.authService.update(res as AnilistAuthToken);
         }
       });
   }

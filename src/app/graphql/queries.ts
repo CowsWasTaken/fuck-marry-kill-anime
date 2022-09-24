@@ -1,16 +1,14 @@
 import {gql} from 'apollo-angular';
 import {
-  AniChartUser,
-  AniChartUserParts, AniChartUserPartsFragment,
-  Character,
+  AniChartUserParts,
+  AniChartUserPartsFragment,
   CharacterParts,
   CharacterPartsFragment,
   CharacterRole,
   MediaListCollectionParts,
   MediaListCollectionPartsFragment,
-  MediaListStatus,
-  MediaType
-} from "../../../generated/graphql";
+  MediaListStatus, MediaType
+} from "./graphql";
 
 
 export const GET_MEDIA = gql<{ MediaListCollection: MediaListCollectionPartsFragment}, { userName: string, type: MediaType, role?: CharacterRole, status_in?: MediaListStatus[] }>`

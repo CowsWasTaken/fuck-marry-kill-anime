@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {CharacterPartsFragment} from "../../../generated/graphql";
 import {Observable} from "rxjs";
+import {CharacterPartsFragment} from "../../graphql/graphql";
 
 @Component({
   selector: 'app-character-description-card',

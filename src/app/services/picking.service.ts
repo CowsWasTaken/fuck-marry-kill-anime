@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {PickTaken} from "../models/Picking/PickTaken";
 import {PickOption} from "../models/Picking/PickOption";
-import {CharacterPartsFragment} from "../../generated/graphql";
+import {CharacterPartsFragment} from "../graphql/graphql";
 
 @Injectable({
   providedIn: 'root'

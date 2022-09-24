@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {FuzzyDate} from "../../generated/graphql";
+import {FuzzyDate} from "../graphql/graphql";
 
 @Pipe({
   name: 'fuzzyDate'

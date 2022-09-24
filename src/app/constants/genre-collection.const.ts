@@ -1,6 +1,6 @@
 // run https://anilist.co/graphiql?query=%7B%0A%20%20GenreCollection%0A%7D to get all genres
 // could be fetched dynamically but seems unnecessary
-export const GenreCollection : string[] = [
+export const GenreCollectionConst : string[] = [
   "Action",
   "Adventure",
   "Comedy",
